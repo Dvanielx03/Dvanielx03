@@ -26,7 +26,7 @@ Trabaja con **Java, Python y PostgreSQL**, además de **Spring Boot** y **FastAP
 
 Para compartir una idea o conversar sobre una oportunidad, [conecta con Daniel en LinkedIn](https://www.linkedin.com/in/daniel-santiago-mayorga-tellez-5bb0463a0/).
 
-[Sobre mí](#sobre-mi) · [Proyectos](#proyectos) · [Tecnologías](#tecnologias) · [Colaboración](#colaboracion) · [Contacto](#contacto)
+[Sobre mí](#sobre-mi) · [Proyectos](#proyectos) · [Tecnologías](#tecnologias) · [Colaboración](#colaboracion) · [Portafolio](#portafolio) · [Hoja de vida](#hoja-de-vida) · [Contacto](#contacto)
 
 <a id="proyectos"></a>
 
@@ -125,6 +125,26 @@ Aporté una refactorización a arquitectura hexagonal y correcciones del menú J
 - Versiono los cambios de base de datos con migraciones.
 - Documento el alcance, las pruebas disponibles y lo que queda pendiente.
 - Trabajo con agentes de IA mediante instrucciones escritas y revisión de cambios.
+
+<a id="portafolio"></a>
+
+<picture><img src="./assets/profile/divider.svg" width="100%" alt=""></picture>
+
+## <picture><img src="./assets/profile/icon-portfolio.svg" width="26" height="26" alt=""></picture> Portafolio web
+
+Un espacio para conocer más de sus proyectos, sus habilidades y las ideas que quiere construir.
+
+> **Próximamente:** el acceso a su portafolio web estará disponible aquí.
+
+<a id="hoja-de-vida"></a>
+
+<picture><img src="./assets/profile/divider.svg" width="100%" alt=""></picture>
+
+## <picture><img src="./assets/profile/icon-resume.svg" width="26" height="26" alt=""></picture> Hoja de vida
+
+Su formación, habilidades y proyectos en un documento que podrás guardar y consultar.
+
+> **Próximamente:** descarga de la hoja de vida en PDF.
 
 <a id="contacto"></a>
 

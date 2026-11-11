@@ -52,6 +52,8 @@ La escena animada se mantiene en las variantes de escritorio y móvil. Las dos v
 
 ## Mantenimiento
 
+Las secciones Portafolio web y Hoja de vida están reservadas con su icono y separador, en la misma paleta de Aurora Veil. Muestran «Próximamente» hasta que el titular proporcione la URL del sitio y el PDF o enlace público de la hoja de vida. No contienen enlaces de ejemplo ni una descarga ficticia. Sus accesos en el menú solo llevan a esas secciones del README.
+
 Ejecutar desde la raíz del repositorio:
 
     python assets/profile/generate.py

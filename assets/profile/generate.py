@@ -219,5 +219,7 @@ icon("collaboration",'<circle cx="8" cy="6" r="3"/><circle cx="20" cy="6" r="3"/
 icon("formation",'<path d="m2 10 12-6 12 6-12 6z"/><path d="M6 12v7q8 7 16 0v-7m3 0v9"/>')
 icon("languages",'<circle cx="14" cy="14" r="11"/><path d="M3 14h22M14 3q-10 11 0 22M14 3q10 11 0 22"/>')
 icon("method",'<path d="M5 6h5v5H5zM18 17h5v5h-5zM10 8h8v6m-3-3 3 3 3-3M8 11v9h10"/>')
+icon("portfolio",'<rect x="3" y="5" width="22" height="18" rx="2"/><path d="M3 10h22m-18-3h1m3 0h1m3 0h1m-5 7-3 3 3 3m6-6 3 3-3 3"/>')
+icon("resume",'<path d="M6 3h10l6 6v16H6zM16 3v7h6M14 13v8m-3-3 3 3 3-3"/>')
 icon("contact",'<rect x="3" y="6" width="22" height="16" rx="3"/><path d="m4 8 10 8L24 8"/>')
 print("Generados",len(list(ROOT.glob("*.svg"))),"SVG locales.")
