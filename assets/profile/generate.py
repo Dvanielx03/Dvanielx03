@@ -146,6 +146,7 @@ for mobile in (False,True):
     contact(mobile)
 divider()
 button()
+icon("about",'<circle cx="14" cy="8" r="5"/><path d="M4 25v-3a10 10 0 0 1 20 0v3"/>')
 icon("projects",'<path d="M4 8h7l2-3h11v18H4z"/><path d="M4 11h20"/>')
 icon("tech",'<rect x="6" y="6" width="16" height="16" rx="3"/><path d="M10 2v4m8-4v4m-8 16v4m8-4v4M2 10h4m-4 8h4m16-8h4m-4 8h4"/><path d="m12 11-3 3 3 3m4-6 3 3-3 3"/>')
 icon("collaboration",'<circle cx="8" cy="6" r="3"/><circle cx="20" cy="6" r="3"/><circle cx="14" cy="22" r="3"/><path d="M8 9v4q0 4 6 6m6-10v4q0 4-6 6"/>')

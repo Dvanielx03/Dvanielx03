@@ -1,8 +1,12 @@
 # Daniel Santiago Mayorga
 
-**Junior Backend Developer · Java, Python y SQL**
+<a id="sobre-mi"></a>
 
-Desarrollo APIs, bases de datos e integraciones para procesos como cotizaciones, alquileres e inventarios. Trabajo con **Spring Boot**, **FastAPI** y datos relacionales, con reglas de negocio, pruebas y documentación.
+## <picture><img src="./assets/profile/icon-about.svg" width="26" height="26" alt=""></picture> Sobre mí
+
+**Técnico Laboral en Desarrollo de Software y Junior Backend Developer** enfocado en el desarrollo de APIs, bases de datos e integraciones para procesos como cotizaciones, alquileres e inventarios.
+
+Trabaja con **Java, Python y SQL**, utilizando **Spring Boot**, **FastAPI** y bases de datos relacionales. En sus proyectos organiza las reglas de negocio, versiona los cambios de datos y acompaña las implementaciones con pruebas y documentación.
 
 <picture>
   <source media="(max-width: 600px)" srcset="./assets/profile/hero-mobile.svg">
@@ -13,7 +17,7 @@ Desarrollo APIs, bases de datos e integraciones para procesos como cotizaciones,
 
 Cuéntame qué proceso quieres resolver y qué necesitas conectar. [También puedes encontrarme en LinkedIn](https://www.linkedin.com/in/daniel-santiago-mayorga-tellez-5bb0463a0/).
 
-[Proyectos](#proyectos) · [Tecnologías](#tecnologias) · [Colaboración](#colaboracion) · [Contacto](#contacto)
+[Sobre mí](#sobre-mi) · [Proyectos](#proyectos) · [Tecnologías](#tecnologias) · [Colaboración](#colaboracion) · [Contacto](#contacto)
 
 <a id="proyectos"></a>
 
