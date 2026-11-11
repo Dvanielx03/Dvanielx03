@@ -43,23 +43,24 @@ def hero(mobile=False):
     s = rect(0,0,w,h,"bg",20)
     s += rect(w-10,0,10,h,"primary")
     s += text(36,42,"D / M",18,"secondary",700,MONO)
-    s += text(36,80,"BACKEND · DATOS · AUTOMATIZACIÓN",22 if mobile else 16,"muted",400,MONO)
+    s += text(36,80,"CREATIVIDAD · APRENDIZAJE · TECNOLOGÍA",22 if mobile else 16,"muted",400,MONO)
     if mobile:
-        s += text(32,151,"Tu operación,",62,"white",700,extra='letter-spacing="-2"')
-        s += text(32,215,"bien conectada.",62,"white",700,extra='letter-spacing="-2"')
+        s += text(32,151,"Ideas nuevas.",62,"white",700,extra='letter-spacing="-2"')
+        s += text(32,215,"Ganas de crecer.",62,"white",700,extra='letter-spacing="-2"')
         y=307
         xvals=[72,320,568]
-        labels=["PROCESO","REGLAS","SOFTWARE"]
+        labels=["EXPLORAR","COMPARTIR","CREAR"]
         s += line(72,y,568,y,"primary",3)
         for i,x in enumerate(xvals):
             s += circle(x,y,10,"secondary" if i==1 else "primary")
             s += text(x,y+47,labels[i],24,"muted",400,MONO,extra='text-anchor="middle"')
-        s += text(36,405,"APIs para cotizar, reservar y gestionar datos.",25,"white")
+        s += text(36,398,"Creatividad para aportar.",24,"white")
+        s += text(36,429,"Curiosidad para aprender.",24,"white")
     else:
-        s += text(32,158,"Tu operación,",68,"white",700,extra='letter-spacing="-2.3"')
-        s += text(32,230,"bien conectada.",68,"white",700,extra='letter-spacing="-2.3"')
-        s += text(36,294,"APIs para cotizar, reservar y gestionar datos.",22,"muted")
-        # Diagrama conceptual de entrada, reglas y salida.
+        s += text(32,158,"Ideas nuevas.",68,"white",700,extra='letter-spacing="-2.3"')
+        s += text(32,230,"Ganas de crecer.",68,"white",700,extra='letter-spacing="-2.3"')
+        s += text(36,294,"Creatividad para aportar. Curiosidad para aprender.",22,"muted")
+        # Conexión visual entre explorar, compartir y crear.
         s += '<g fill="none" stroke="#3B335F" stroke-width="1">'
         for x in range(680,940,26):
             s += f'<path d="M{x} 70V290"/>'
@@ -72,9 +73,9 @@ def hero(mobile=False):
         s += text(794,186,"{ }",25,"bg",700,MONO,extra='text-anchor="middle"')
         s += rect(874,220,40,40,"bg",10,extra='stroke="#A78BFA" stroke-width="2"')
         s += circle(900,240,5,"secondary")
-        s += text(696,314,"PROCESO / REGLAS / SOFTWARE",12,"muted",400,MONO)
+        s += text(696,314,"EXPLORAR / COMPARTIR / CREAR",12,"muted",400,MONO)
     write("hero-mobile" if mobile else "hero",w,h,s,
-          "Tu operación, bien conectada. APIs para cotizar, reservar y gestionar datos.")
+          "Ideas nuevas. Ganas de crecer. Creatividad para aportar y curiosidad para aprender.")
 
 def divider():
     s = line(0,16,960,16,"line",1)
@@ -122,18 +123,18 @@ def technologies(mobile=False):
 def contact(mobile=False):
     w,h = (640,220) if mobile else (960,190)
     s=rect(0,0,w,h,"surface",16,extra='stroke="#A78BFA" stroke-width="2"')
-    s+=text(30,44,"HABLEMOS DE TU PROYECTO",22 if mobile else 16,"primary",700,MONO)
-    s+=text(28,105,"¿Qué quieres conectar?",42 if mobile else 52,"white",700,extra='letter-spacing="-1"')
-    s+=text(30,160 if mobile else 153,"Cuéntame el proceso. Revisemos el alcance.",26 if mobile else 22,"white")
+    s+=text(30,44,"TODO EMPIEZA CON UNA CONVERSACIÓN",22 if mobile else 16,"primary",700,MONO)
+    s+=text(28,105,"¿Y si creamos algo juntos?",42 if mobile else 52,"white",700,extra='letter-spacing="-1"')
+    s+=text(30,160 if mobile else 153,"Una idea, un reto o una oportunidad.",26 if mobile else 22,"white")
     s+='<path d="M'+str(w-75)+' 38h30m-12-12 12 12-12 12" fill="none" stroke="#3FFFE6" stroke-width="3"/>'
     write("contact-mobile" if mobile else "contact",w,h,s,
-          "Hablemos de tu proyecto. Cuéntame qué proceso quieres conectar y revisemos el alcance.")
+          "¿Y si creamos algo juntos? Una idea, un reto o una oportunidad.")
 
 def button():
     s=rect(0,0,296,48,"action",8)
-    s+=text(20,30,"Hablemos de tu proyecto",18,"bg",700)
+    s+=text(20,30,"Compartamos una idea",18,"bg",700)
     s+='<path d="M259 24h18m-7-7 7 7-7 7" stroke="#070B22" stroke-width="2" fill="none"/>'
-    write("contact-button",296,48,s,"Hablemos de tu proyecto por correo")
+    write("contact-button",296,48,s,"Compartamos una idea por correo")
 
 def icon(name,paths):
     s='<g fill="none" stroke="#3FFFE6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">'+paths+'</g>'

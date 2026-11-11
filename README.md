@@ -13,18 +13,18 @@
 
 ## <picture><img src="./assets/profile/icon-about.svg" width="26" height="26" alt=""></picture> Sobre mí
 
-**Técnico Laboral en Desarrollo de Software y Junior Backend Developer** enfocado en el desarrollo de APIs, bases de datos e integraciones para procesos como cotizaciones, alquileres e inventarios.
+**Técnico Laboral en Desarrollo de Software y Junior Backend Developer** con ganas de seguir creciendo, aprender de otras personas y aportar ideas creativas que ayuden a sacar adelante nuevos proyectos.
 
-Trabaja con **Java, Python y SQL**, utilizando **Spring Boot**, **FastAPI** y bases de datos relacionales. En sus proyectos organiza las reglas de negocio, versiona los cambios de datos y acompaña las implementaciones con pruebas y documentación.
+Trabaja con **Java, Python y PostgreSQL**, además de **Spring Boot** y **FastAPI**. Le gusta explorar la tecnología, probar sus ideas y descubrir qué puede crear con lo que va aprendiendo.
 
 <picture>
   <source media="(max-width: 600px)" srcset="./assets/profile/hero-mobile.svg">
-  <img src="./assets/profile/hero.svg" width="100%" alt="Tu operación, bien conectada. APIs para cotizar, reservar y gestionar datos.">
+  <img src="./assets/profile/hero.svg" width="100%" alt="Ideas nuevas. Ganas de crecer. Creatividad para aportar y curiosidad para aprender.">
 </picture>
 
-<a href="mailto:danielsantiagomayorga03@gmail.com"><img src="./assets/profile/contact-button.svg" width="296" height="48" alt="Hablemos de tu proyecto por correo"></a>
+<a href="mailto:danielsantiagomayorga03@gmail.com"><img src="./assets/profile/contact-button.svg" width="296" height="48" alt="Compartamos una idea por correo"></a>
 
-Cuéntame qué proceso quieres resolver y qué necesitas conectar. [También puedes encontrarme en LinkedIn](https://www.linkedin.com/in/daniel-santiago-mayorga-tellez-5bb0463a0/).
+Para compartir una idea o conversar sobre una oportunidad, [conecta con Daniel en LinkedIn](https://www.linkedin.com/in/daniel-santiago-mayorga-tellez-5bb0463a0/).
 
 [Sobre mí](#sobre-mi) · [Proyectos](#proyectos) · [Tecnologías](#tecnologias) · [Colaboración](#colaboracion) · [Contacto](#contacto)
 
@@ -135,16 +135,15 @@ Aporté una refactorización a arquitectura hexagonal y correcciones del menú J
 <a href="mailto:danielsantiagomayorga03@gmail.com">
 <picture>
   <source media="(max-width: 600px)" srcset="./assets/profile/contact-mobile.svg">
-  <img src="./assets/profile/contact.svg" width="100%" alt="Hablemos de tu proyecto. Cuéntame qué proceso quieres conectar y revisemos el alcance.">
+  <img src="./assets/profile/contact.svg" width="100%" alt="¿Y si creamos algo juntos? Una idea, un reto o una oportunidad.">
 </picture>
 </a>
 
-Escríbeme con el problema, el resultado que buscas y las herramientas que ya utilizas.
+¿Tienes una idea, un reto o una oportunidad para compartir? Daniel quiere conocerla y aportar su creatividad mientras sigue creciendo como desarrollador.
 
-**[danielsantiagomayorga03@gmail.com](mailto:danielsantiagomayorga03@gmail.com)**<br>
-[LinkedIn](https://www.linkedin.com/in/daniel-santiago-mayorga-tellez-5bb0463a0/) · [Discord](https://discord.com/users/1445751258022416415)
-
-Para preguntas técnicas sobre un proyecto, abre un issue en su repositorio.
+- **LinkedIn:** [Perfil profesional](https://www.linkedin.com/in/daniel-santiago-mayorga-tellez-5bb0463a0/)
+- **Correo:** [danielsantiagomayorga03@gmail.com](mailto:danielsantiagomayorga03@gmail.com)
+- **Discord:** [Perfil de contacto](https://discord.com/users/1445751258022416415)
 
 <!-- Responsable: Daniel Santiago Mayorga. Revisión: 2026-11-11.
 Revisar al publicar un proyecto o versión importante, cambiar de rol o iniciar una búsqueda laboral.
