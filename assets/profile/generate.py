@@ -41,18 +41,18 @@ def hero(mobile=False):
     s = rect(0,0,w,h,"bg",20)
     s += rect(w-10,0,10,h,"blue")
     s += text(36,42,"D / M",18,"orange",700,MONO)
-    s += text(36,80,"BACKEND · DATOS · AUTOMATIZACIÓN",16,"muted",400,MONO)
+    s += text(36,80,"BACKEND · DATOS · AUTOMATIZACIÓN",22 if mobile else 16,"muted",400,MONO)
     if mobile:
         s += text(32,151,"Tu operación,",62,"white",700,extra='letter-spacing="-2"')
         s += text(32,215,"bien conectada.",62,"white",700,extra='letter-spacing="-2"')
         y=307
-        xvals=[56,320,584]
+        xvals=[72,320,568]
         labels=["PROCESO","REGLAS","SOFTWARE"]
-        s += line(56,y,584,y,"blue",3)
+        s += line(72,y,568,y,"blue",3)
         for i,x in enumerate(xvals):
             s += circle(x,y,10,"orange" if i==1 else "blue")
-            s += text(x,y+47,labels[i],17,"muted",400,MONO,extra='text-anchor="middle"')
-        s += text(36,405,"APIs para cotizar, reservar y gestionar datos.",21,"white")
+            s += text(x,y+47,labels[i],24,"muted",400,MONO,extra='text-anchor="middle"')
+        s += text(36,405,"APIs para cotizar, reservar y gestionar datos.",25,"white")
     else:
         s += text(32,158,"Tu operación,",68,"white",700,extra='letter-spacing="-2.3"')
         s += text(32,230,"bien conectada.",68,"white",700,extra='letter-spacing="-2.3"')
@@ -84,7 +84,7 @@ def project(key, tag, labels, mobile=False):
     w,h = (640,184) if mobile else (960,172)
     s = rect(0,0,w,h,"bg",14)
     s += rect(0,20,4,h-40,"blue",2)
-    s += text(28,37,tag,17 if mobile else 19,"orange",700,MONO)
+    s += text(28,37,tag,24 if mobile else 19,"orange",700,MONO)
     y = 90 if mobile else 89
     positions = [92,320,548] if mobile else [124,480,836]
     s += line(positions[0],y,positions[-1],y,"line",2)
@@ -94,7 +94,7 @@ def project(key, tag, labels, mobile=False):
             s += '<path d="M'+str(x-5)+' '+str(y-6)+'l-6 6 6 6m10-12 6 6-6 6" fill="none" stroke="#F2B181" stroke-width="2"/>'
         else:
             s += rect(x-5,y-5,10,10,"orange" if i==2 else "blue",2)
-        s += text(x,y+46,label,22 if mobile else 24,"white",600,extra='text-anchor="middle"')
+        s += text(x,y+46,label,26 if mobile else 24,"white",600,extra='text-anchor="middle"')
     write(key+("-mobile" if mobile else ""),w,h,s,tag+": "+", ".join(labels))
 
 def technologies(mobile=False):
@@ -112,17 +112,17 @@ def technologies(mobile=False):
         x=(i%cols)*(cw+gap); y=(i//cols)*(ch+gap)
         s += rect(x,y,cw,ch,"bg",12)
         s += rect(x+18,y+20,4,ch-40,"orange" if i%3==2 else "blue",2)
-        s += text(x+38,y+43,name,30 if mobile else 28,"white",700)
-        s += text(x+38,y+77,caption,15,"muted",400,MONO)
+        s += text(x+38,y+43,name,34 if mobile else 28,"white",700)
+        s += text(x+38,y+82 if mobile else y+77,caption,24 if mobile else 15,"muted",400,MONO)
     write("technologies-mobile" if mobile else "technologies",w,h,s,
           "Tecnologías principales: Java, Spring Boot, Python, FastAPI, PostgreSQL y Docker")
 
 def contact(mobile=False):
     w,h = (640,220) if mobile else (960,190)
     s=rect(0,0,w,h,"action",16)
-    s+=text(30,44,"HABLEMOS DE TU PROYECTO",16,"white",700,MONO)
+    s+=text(30,44,"HABLEMOS DE TU PROYECTO",22 if mobile else 16,"white",700,MONO)
     s+=text(28,105,"¿Qué quieres conectar?",42 if mobile else 52,"white",700,extra='letter-spacing="-1"')
-    s+=text(30,160 if mobile else 153,"Cuéntame el proceso. Revisemos el alcance.",22,"white")
+    s+=text(30,160 if mobile else 153,"Cuéntame el proceso. Revisemos el alcance.",26 if mobile else 22,"white")
     s+='<path d="M'+str(w-75)+' 38h30m-12-12 12 12-12 12" fill="none" stroke="#F5F8FD" stroke-width="3"/>'
     write("contact-mobile" if mobile else "contact",w,h,s,
           "Hablemos de tu proyecto. Cuéntame qué proceso quieres conectar y revisemos el alcance.")
