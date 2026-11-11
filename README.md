@@ -3,7 +3,7 @@
   <source media="(max-width: 600px) and (prefers-reduced-motion: reduce)" srcset="./assets/profile/aurora-name-mobile-static.svg">
   <source media="(prefers-reduced-motion: reduce)" srcset="./assets/profile/aurora-name-static.svg">
   <source media="(max-width: 600px)" srcset="./assets/profile/aurora-name-mobile.svg">
-  <img src="./assets/profile/aurora-name.svg" width="100%" alt="Daniel Santiago Mayorga · Junior Backend Developer">
+  <img src="./assets/profile/aurora-name.svg" width="100%" alt="Daniel Santiago Mayorga · Junior Backend Developer. Ilustración de Daniel con traje negro de líneas rojas y la máscara en la mano, sobre las azoteas de una ciudad de noche.">
 </picture>
 </h1>
 
