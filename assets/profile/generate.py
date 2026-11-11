@@ -1,14 +1,16 @@
 """Genera los SVG locales del perfil. Solo usa la biblioteca estándar.
 
 Uso desde la raíz: python assets/profile/generate.py
-Diseño propio; fuentes y decisiones en docs/PROFILE-DESIGN.md.
+Aurora Veil adaptada en vendor/; fuentes y decisiones en docs/PROFILE-DESIGN.md.
 """
 from pathlib import Path
 from xml.sax.saxutils import escape
+import xml.etree.ElementTree as ET
 
 ROOT = Path(__file__).resolve().parent
-C = {"bg": "#152640", "blue": "#4D7CFE", "action": "#315DD9", "orange": "#F2B181",
-     "white": "#F5F8FD", "muted": "#B7C9E2", "line": "#334B6C"}
+C = {"bg": "#070B22", "surface": "#0E1B3A", "primary": "#3FFFE6",
+     "action": "#3FFFE6", "secondary": "#A78BFA", "accent": "#FF3D8A",
+     "white": "#FEF3C7", "muted": "#CBD5E1", "line": "#3B335F"}
 SANS = "Arial, Helvetica, sans-serif"
 MONO = "Consolas, Liberation Mono, monospace"
 
@@ -39,8 +41,8 @@ def write(name,w,h,body,title):
 def hero(mobile=False):
     w,h = (640,440) if mobile else (960,340)
     s = rect(0,0,w,h,"bg",20)
-    s += rect(w-10,0,10,h,"blue")
-    s += text(36,42,"D / M",18,"orange",700,MONO)
+    s += rect(w-10,0,10,h,"primary")
+    s += text(36,42,"D / M",18,"secondary",700,MONO)
     s += text(36,80,"BACKEND · DATOS · AUTOMATIZACIÓN",22 if mobile else 16,"muted",400,MONO)
     if mobile:
         s += text(32,151,"Tu operación,",62,"white",700,extra='letter-spacing="-2"')
@@ -48,9 +50,9 @@ def hero(mobile=False):
         y=307
         xvals=[72,320,568]
         labels=["PROCESO","REGLAS","SOFTWARE"]
-        s += line(72,y,568,y,"blue",3)
+        s += line(72,y,568,y,"primary",3)
         for i,x in enumerate(xvals):
-            s += circle(x,y,10,"orange" if i==1 else "blue")
+            s += circle(x,y,10,"secondary" if i==1 else "primary")
             s += text(x,y+47,labels[i],24,"muted",400,MONO,extra='text-anchor="middle"')
         s += text(36,405,"APIs para cotizar, reservar y gestionar datos.",25,"white")
     else:
@@ -58,42 +60,42 @@ def hero(mobile=False):
         s += text(32,230,"bien conectada.",68,"white",700,extra='letter-spacing="-2.3"')
         s += text(36,294,"APIs para cotizar, reservar y gestionar datos.",22,"muted")
         # Diagrama conceptual de entrada, reglas y salida.
-        s += '<g fill="none" stroke="#334B6C" stroke-width="1">'
+        s += '<g fill="none" stroke="#3B335F" stroke-width="1">'
         for x in range(680,940,26):
             s += f'<path d="M{x} 70V290"/>'
         for y in range(80,300,26):
             s += f'<path d="M674 {y}H930"/>'
         s += '</g>'
-        s += '<path d="M694 110H750V176H842V240H900" fill="none" stroke="#4D7CFE" stroke-width="4"/>'
-        s += rect(695,90,36,36,"bg",8,extra='stroke="#4D7CFE" stroke-width="2"')
-        s += rect(762,144,64,64,"blue",12)
-        s += text(794,186,"{ }",25,"white",700,MONO,extra='text-anchor="middle"')
-        s += rect(874,220,40,40,"bg",10,extra='stroke="#F2B181" stroke-width="2"')
-        s += circle(900,240,5,"orange")
+        s += '<path d="M694 110H750V176H842V240H900" fill="none" stroke="#3FFFE6" stroke-width="4"/>'
+        s += rect(695,90,36,36,"bg",8,extra='stroke="#3FFFE6" stroke-width="2"')
+        s += rect(762,144,64,64,"primary",12)
+        s += text(794,186,"{ }",25,"bg",700,MONO,extra='text-anchor="middle"')
+        s += rect(874,220,40,40,"bg",10,extra='stroke="#A78BFA" stroke-width="2"')
+        s += circle(900,240,5,"secondary")
         s += text(696,314,"PROCESO / REGLAS / SOFTWARE",12,"muted",400,MONO)
     write("hero-mobile" if mobile else "hero",w,h,s,
           "Tu operación, bien conectada. APIs para cotizar, reservar y gestionar datos.")
 
 def divider():
     s = line(0,16,960,16,"line",1)
-    s += '<path d="M0 16H180L192 4H224L236 16H350" fill="none" stroke="#4D7CFE" stroke-width="2"/>'
-    s += circle(224,4,3,"orange")
+    s += '<path d="M0 16H180L192 4H224L236 16H350" fill="none" stroke="#3FFFE6" stroke-width="2"/>'
+    s += circle(224,4,3,"accent")
     write("divider",960,32,s,"Separador decorativo")
 
 def project(key, tag, labels, mobile=False):
     w,h = (640,184) if mobile else (960,172)
     s = rect(0,0,w,h,"bg",14)
-    s += rect(0,20,4,h-40,"blue",2)
-    s += text(28,37,tag,24 if mobile else 19,"orange",700,MONO)
+    s += rect(0,20,4,h-40,"primary",2)
+    s += text(28,37,tag,24 if mobile else 19,"secondary",700,MONO)
     y = 90 if mobile else 89
     positions = [92,320,548] if mobile else [124,480,836]
     s += line(positions[0],y,positions[-1],y,"line",2)
     for i,(x,label) in enumerate(zip(positions, labels)):
-        s += circle(x,y,16,"bg",extra='stroke="#4D7CFE" stroke-width="2"')
+        s += circle(x,y,16,"bg",extra='stroke="#3FFFE6" stroke-width="2"')
         if i==1:
-            s += '<path d="M'+str(x-5)+' '+str(y-6)+'l-6 6 6 6m10-12 6 6-6 6" fill="none" stroke="#F2B181" stroke-width="2"/>'
+            s += '<path d="M'+str(x-5)+' '+str(y-6)+'l-6 6 6 6m10-12 6 6-6 6" fill="none" stroke="#A78BFA" stroke-width="2"/>'
         else:
-            s += rect(x-5,y-5,10,10,"orange" if i==2 else "blue",2)
+            s += rect(x-5,y-5,10,10,"secondary" if i==2 else "primary",2)
         s += text(x,y+46,label,26 if mobile else 24,"white",600,extra='text-anchor="middle"')
     write(key+("-mobile" if mobile else ""),w,h,s,tag+": "+", ".join(labels))
 
@@ -111,7 +113,7 @@ def technologies(mobile=False):
     for i,(name,caption) in enumerate(items):
         x=(i%cols)*(cw+gap); y=(i//cols)*(ch+gap)
         s += rect(x,y,cw,ch,"bg",12)
-        s += rect(x+18,y+20,4,ch-40,"orange" if i%3==2 else "blue",2)
+        s += rect(x+18,y+20,4,ch-40,"secondary" if i%3==2 else "primary",2)
         s += text(x+38,y+43,name,34 if mobile else 28,"white",700)
         s += text(x+38,y+82 if mobile else y+77,caption,24 if mobile else 15,"muted",400,MONO)
     write("technologies-mobile" if mobile else "technologies",w,h,s,
@@ -119,25 +121,88 @@ def technologies(mobile=False):
 
 def contact(mobile=False):
     w,h = (640,220) if mobile else (960,190)
-    s=rect(0,0,w,h,"action",16)
-    s+=text(30,44,"HABLEMOS DE TU PROYECTO",22 if mobile else 16,"white",700,MONO)
+    s=rect(0,0,w,h,"surface",16,extra='stroke="#A78BFA" stroke-width="2"')
+    s+=text(30,44,"HABLEMOS DE TU PROYECTO",22 if mobile else 16,"primary",700,MONO)
     s+=text(28,105,"¿Qué quieres conectar?",42 if mobile else 52,"white",700,extra='letter-spacing="-1"')
     s+=text(30,160 if mobile else 153,"Cuéntame el proceso. Revisemos el alcance.",26 if mobile else 22,"white")
-    s+='<path d="M'+str(w-75)+' 38h30m-12-12 12 12-12 12" fill="none" stroke="#F5F8FD" stroke-width="3"/>'
+    s+='<path d="M'+str(w-75)+' 38h30m-12-12 12 12-12 12" fill="none" stroke="#3FFFE6" stroke-width="3"/>'
     write("contact-mobile" if mobile else "contact",w,h,s,
           "Hablemos de tu proyecto. Cuéntame qué proceso quieres conectar y revisemos el alcance.")
 
 def button():
     s=rect(0,0,296,48,"action",8)
-    s+=text(20,30,"Hablemos de tu proyecto",18,"white",700)
-    s+='<path d="M259 24h18m-7-7 7 7-7 7" stroke="#F5F8FD" stroke-width="2" fill="none"/>'
+    s+=text(20,30,"Hablemos de tu proyecto",18,"bg",700)
+    s+='<path d="M259 24h18m-7-7 7 7-7 7" stroke="#070B22" stroke-width="2" fill="none"/>'
     write("contact-button",296,48,s,"Hablemos de tu proyecto por correo")
 
 def icon(name,paths):
-    s='<g fill="none" stroke="#4D7CFE" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">'+paths+'</g>'
-    write("icon-"+name,28,28,s,"")
+    s='<g fill="none" stroke="#3FFFE6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">'+paths+'</g>'
+    write("icon-"+name,28,28,rect(0,0,28,28,"surface",6)+s,"")
+
+
+def aurora(mobile=False, still=False):
+    """Personaliza Aurora Veil; la escena y sus filtros proceden de vendor/."""
+    ns = "http://www.w3.org/2000/svg"
+    ET.register_namespace("", ns)
+    original = ET.parse(ROOT / "vendor" / "aurora-veil.svg").getroot()
+    w = 640 if mobile else 1200
+    svg = ET.Element(f"{{{ns}}}svg", {
+        "viewBox": f"0 0 {w} 420", "width": str(w), "height": "420",
+        "role": "img", "aria-label": "Daniel Santiago Mayorga, Junior Backend Developer"
+    })
+    svg.append(ET.Comment(
+        "Adapted from Aurora Veil, beydemirfurkan/awesome-github-profile.\n"
+        + (ROOT / "vendor" / "LICENSE").read_text(encoding="utf-8").strip()
+    ))
+    ET.SubElement(svg, f"{{{ns}}}title").text = "Daniel Santiago Mayorga"
+    ET.SubElement(svg, f"{{{ns}}}desc").text = (
+        "Junior Backend Developer. Java, Python y SQL. "
+        "Aurora en turquesa, violeta y magenta sobre un paisaje nocturno."
+    )
+    children = list(original)
+    svg.append(children[0])
+    scene = ET.SubElement(svg, f"{{{ns}}}g",
+                          {"transform": "translate(-280 0)"} if mobile else {})
+    for child in children[1:]:
+        # La primera familia Fraunces inicia el bloque de identidad original.
+        if "Fraunces" in child.get("font-family", ""):
+            break
+        scene.append(child)
+
+    serif = "Fraunces, Playfair Display, Georgia, serif"
+    if mobile:
+        labels = text(32,42,"Dvanielx03",20,"muted",400,MONO)
+        labels += text(32,316,"Daniel Santiago",54,"white",500,serif,
+                       extra='font-style="italic" letter-spacing="-1.2"')
+        labels += text(32,374,"Mayorga",58,"white",500,serif,
+                       extra='font-style="italic" letter-spacing="-1.2"')
+        labels += text(36,410,"JUNIOR BACKEND DEVELOPER",22,"primary",400,MONO,
+                       extra='letter-spacing="2"')
+    else:
+        labels = text(80,42,"JAVA / PYTHON / SQL",14,"muted",400,MONO,
+                      extra='letter-spacing="3"')
+        labels += text(80,368,"Daniel Santiago Mayorga",68,"white",500,serif,
+                       extra='font-style="italic" letter-spacing="-1.5"')
+        labels += text(82,400,"JUNIOR BACKEND DEVELOPER",18,"primary",400,MONO,
+                       extra='letter-spacing="3"')
+        labels += text(1120,400,"github.com/Dvanielx03",16,"muted",400,MONO,
+                       extra='text-anchor="end"')
+    parsed = ET.fromstring(f'<g xmlns="{ns}">{labels}</g>')
+    svg.append(parsed)
+    if still:
+        for parent in svg.iter():
+            for child in list(parent):
+                if child.tag == f"{{{ns}}}animate":
+                    parent.remove(child)
+    name = "aurora-name" + ("-mobile" if mobile else "") + ("-static" if still else "")
+    (ROOT / (name + ".svg")).write_text(
+        "\n".join(row.rstrip() for row in ET.tostring(svg, encoding="unicode").splitlines())
+        + "\n", encoding="utf-8"
+    )
 
 for mobile in (False,True):
+    aurora(mobile)
+    aurora(mobile, still=True)
     hero(mobile)
     project("xeon","COTIZACIÓN ASISTIDA",["Conversación","Reglas","Borrador"],mobile)
     project("rental","GESTIÓN DE ALQUILERES",["Catálogo","Reserva","Devolución"],mobile)

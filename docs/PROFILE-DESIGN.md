@@ -4,25 +4,26 @@
 
 Perfil de Daniel Santiago Mayorga / Dvanielx03. Objetivo: facilitar que un posible cliente entienda qué problemas aborda su trabajo y cómo iniciar una conversación. Rol verificado: desarrollador backend junior. Se conservan titulación, idiomas y contactos autorizados. No se incluye experiencia laboral ni sección de recorrido de proyectos. No se usan emojis.
 
-Dirección elegida: una mesa de conexiones de backend, con tipografía de gran formato, diagramas del flujo de cada proyecto y líneas de enlace entre secciones. La firma es una línea azul que une entradas, reglas y salidas. Los diagramas son explicaciones esquemáticas, no capturas de interfaces ni sistemas anunciados como producción.
+Dirección elegida: Aurora Veil presenta el nombre sobre auroras animadas y un paisaje nocturno. La decoración restante mantiene los diagramas de backend y las líneas de conexión, adaptados a turquesa, violeta y magenta. Los diagramas son explicaciones esquemáticas, no capturas de interfaces ni sistemas anunciados como producción.
 
 ## Sistema visual
 
 | Token | Valor | Uso |
 | --- | --- | --- |
-| Midnight | #152640 | Hero, paneles de proyectos y CTA |
-| Cobalt | #4D7CFE | Conexiones y foco |
-| Action | #315DD9 | Fondos de contacto con texto blanco |
-| Apricot | #F2B181 | Acentos secundarios |
-| Ice | #F5F8FD | Tipografía sobre paneles |
-| Steel | #B7C9E2 | Etiquetas sobre paneles |
-| Border | #334B6C | Separadores y estructura |
+| Night | #070B22 | Fondo de los paneles, tomado del cielo de Aurora Veil |
+| Deep sky | #0E1B3A | Contacto y fondo de iconos |
+| Teal | #3FFFE6 | Conexiones, iconos y botón principal |
+| Violet | #A78BFA | Acentos y contornos |
+| Magenta | #FF3D8A | Puntos de unión y aurora |
+| Warm light | #FEF3C7 | Nombres y texto sobre paneles |
+| Cloud | #CBD5E1 | Etiquetas secundarias |
+| Border | #3B335F | Separadores y estructura |
 
-Tipografía: Arial/Helvetica para titulares y texto; Consolas/Liberation Mono para etiquetas técnicas. Son familias de reserva: no se descargan fuentes.
+Tipografía: la tarjeta del nombre usa la pila Fraunces/Playfair Display/Georgia de la plantilla, con Georgia como alternativa local; Arial/Helvetica para las demás tarjetas y Consolas/Liberation Mono para etiquetas técnicas. No se descargan fuentes.
 
 Composición: una sola columna; proyectos consecutivos; capacidades agrupadas; colaboración con PR enlazados; formación, idiomas y forma de trabajo; cierre de contacto. Las tablas amplias se sustituyen por grupos breves de texto para mejorar el uso móvil.
 
-Los SVG tienen variante compacta cuando contienen texto. La cabecera usa imagen alternativa para pantallas pequeñas con <picture>. Los nombres, capacidades, aportes y contactos continúan en Markdown. Los SVG no contienen scripts, recursos remotos ni animaciones; por ello no hay que esperar a una secuencia para entender el perfil.
+Los SVG tienen variante compacta cuando contienen texto. La tarjeta del nombre utiliza <picture> para seleccionar una composición móvil o una versión estática cuando se solicita reducir movimiento. El nombre y el rol siempre están visibles: la animación afecta al cielo y las estrellas. La tarjeta conserva una cabecera H1 accesible mediante su texto alternativo. Capacidades, aportes y contactos siguen en texto. Ningún SVG contiene scripts ni recursos remotos. Solo la tarjeta del nombre usa animaciones SMIL y filtros de turbulencia; las demás decoraciones son estáticas.
 
 ## Investigación
 
@@ -36,7 +37,9 @@ Revisión realizada el 11 de noviembre de 2026:
 - [Readme Typing SVG](https://github.com/DenverCoder1/readme-typing-svg): se evaluó el efecto de escritura. Se descartó porque retrasaría el mensaje principal y repetiría la dirección visual anterior.
 - [Awesome GitHub Profile README](https://github.com/abhisheknaiidu/awesome-github-profile-readme): catálogo de estilos y ejemplos; no se copian datos ni identidades.
 
-La implementación SVG es propia; no se copiaron gráficos ni código de las plantillas. Se mantiene intacto el recurso terminal anterior con su atribución existente.
+La tarjeta del nombre adapta directamente [Aurora Veil](https://github.com/beydemirfurkan/awesome-github-profile/tree/main/templates/09-avant-garde/aurora-veil), por petición del titular. La fuente original se conserva en assets/profile/vendor/aurora-veil.svg (blob c91a64b56210fd023e8932dad4c607342a64f0ee). Su licencia MIT está en assets/profile/vendor/LICENSE y se incluye también en los SVG derivados. Se sustituyeron el nombre, el rol y las etiquetas; se retiraron las coordenadas y datos de ejemplo. El resto de los dibujos y su generador son propios. El recurso terminal anterior conserva su atribución.
+
+La escena animada se mantiene en las variantes de escritorio y móvil. Las dos variantes estáticas eliminan todos los elementos animate, conservando los colores, el paisaje y el texto. Solo una de las cuatro fuentes se muestra en cada viewport. La preferencia de movimiento reducido la evalúa el navegador mediante la etiqueta picture.
 
 ## Mantenimiento
 
