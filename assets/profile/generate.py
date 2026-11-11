@@ -320,7 +320,7 @@ def tarjeta(movil=False, quieta=False):
             for hijo in list(padre):
                 if hijo.tag in (f"{{{ns}}}animate", f"{{{ns}}}animateTransform"):
                     padre.remove(hijo)
-    nombre_archivo = "aurora-name" + ("-mobile" if movil else "") + ("-static" if quieta else "")
+    nombre_archivo = "miles-card" + ("-mobile" if movil else "") + ("-static" if quieta else "")
     texto = ET.tostring(svg, encoding="unicode")
     (ROOT / f"{nombre_archivo}.svg").write_text(
         "\n".join(fila.rstrip() for fila in texto.splitlines()) + "\n", encoding="utf-8")

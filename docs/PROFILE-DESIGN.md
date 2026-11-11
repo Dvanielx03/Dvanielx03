@@ -58,3 +58,5 @@ Desde la raíz del repositorio:
     python assets/profile/generate.py
 
 Los textos de las viñetas están en `VINETAS`, las tecnologías en `TECNOLOGIAS` y el personaje en `personaje()`, dentro del generador. Los textos profesionales se editan en README.md. Revisar el perfil al publicar un proyecto importante, cambiar de rol o iniciar una búsqueda laboral.
+
+Caché de imágenes: GitHub y los navegadores guardan cada SVG por su ruta. Cuando un cambio visual importante no aparece en el perfil, renombrar el archivo (en el generador y en README.md) obliga a todos a descargar la versión nueva. Por eso la tarjeta pasó de `aurora-name*.svg` a `miles-card*.svg` al añadir el personaje.
