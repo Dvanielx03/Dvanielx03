@@ -65,6 +65,15 @@ Estas fechas corresponden a la creación de los repositorios, no a experiencia l
 | Septiembre de 2026 | [Gestión SST/PESV](https://github.com/Dvanielx03/Plataforma_multi-tenant_de_gesti-n_SST-PESV) | Base multiempresa para seguridad y salud en el trabajo y planes de seguridad vial; PostgreSQL, normalización y lógica SQL |
 | Octubre de 2026 | [Backend clínico](https://github.com/Dvanielx03/SpringBootDataJPA-DDD) | Persistencia JPA y esquema versionado con Flyway en módulos de dominio, aplicación e infraestructura |
 
+## Formación
+
+**Técnico Laboral en Desarrollo de Software.**
+
+## Idiomas
+
+- **Español:** nativo.
+- **Inglés:** B2.
+
 ## Cómo trabajo
 
 - Separo las reglas del negocio de los frameworks y servicios externos.
@@ -74,10 +83,10 @@ Estas fechas corresponden a la creación de los repositorios, no a experiencia l
 
 ## Contacto
 
-Puedes escribirme por [LinkedIn](https://www.linkedin.com/in/daniel-santiago-mayorga-tellez-5bb0463a0/) o [Discord](https://discord.com/users/1445751258022416415). Para preguntas técnicas sobre un proyecto, abre un issue en su repositorio.
+Puedes escribirme por [correo](mailto:danielsantiagomayorga03@gmail.com), [LinkedIn](https://www.linkedin.com/in/daniel-santiago-mayorga-tellez-5bb0463a0/) o [Discord](https://discord.com/users/1445751258022416415). Para preguntas técnicas sobre un proyecto, abre un issue en su repositorio.
 
 <!-- Responsable: Daniel Santiago Mayorga. Última revisión: 2026-11-11.
 Revisar al publicar un proyecto o una versión importante, cambiar de rol o iniciar una búsqueda laboral.
-Formación, experiencia laboral, certificaciones e idiomas se incorporarán cuando el titular confirme los datos.
+Formación e idiomas confirmados por el titular el 2026-11-11. Experiencia laboral omitida a petición del titular.
 Los recursos visuales anteriores se conservan en assets/; la decoración de esta versión está pendiente de elección.
 -->
