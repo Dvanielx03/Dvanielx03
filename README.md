@@ -1,5 +1,3 @@
-<a id="daniel-santiago-mayorga"></a>
-
 <h1>
 <picture>
   <source media="(max-width: 600px) and (prefers-reduced-motion: reduce)" srcset="./assets/profile/aurora-name-mobile-static.svg">
@@ -9,164 +7,90 @@
 </picture>
 </h1>
 
-<a id="sobre-mi"></a>
+Soy Daniel, **Junior Backend Developer** y Técnico Laboral en Desarrollo de Software. Construyo APIs y bases de datos con **Java, Spring Boot, Python, FastAPI y PostgreSQL**, y me gusta probar ideas nuevas hasta ver qué puedo crear con lo que aprendo.
 
-## <picture><img src="./assets/profile/icon-about.svg" width="26" height="26" alt=""></picture> Sobre mí
-
-**Técnico Laboral en Desarrollo de Software y Junior Backend Developer** con ganas de seguir creciendo, aprender de otras personas y aportar ideas creativas que ayuden a sacar adelante nuevos proyectos.
-
-Trabaja con **Java, Python y PostgreSQL**, además de **Spring Boot** y **FastAPI**. Le gusta explorar la tecnología, probar sus ideas y descubrir qué puede crear con lo que va aprendiendo.
+Español nativo · Inglés B2<br>
+[LinkedIn](https://www.linkedin.com/in/daniel-santiago-mayorga-tellez-5bb0463a0/) · [Correo](mailto:danielsantiagomayorga03@gmail.com) · [Discord](https://discord.com/users/1445751258022416415)
 
 <picture>
-  <source media="(max-width: 600px)" srcset="./assets/profile/hero-mobile.svg">
-  <img src="./assets/profile/hero.svg" width="100%" alt="Ideas nuevas. Ganas de crecer. Creatividad para aportar y curiosidad para aprender.">
+  <source media="(prefers-color-scheme: dark)" srcset="./assets/profile/divider-noche.svg">
+  <img src="./assets/profile/divider-papel.svg" width="100%" alt="">
 </picture>
 
-<a href="mailto:danielsantiagomayorga03@gmail.com"><img src="./assets/profile/contact-button.svg" width="296" height="48" alt="Compartamos una idea por correo"></a>
+## Proyectos
 
-Para compartir una idea o conversar sobre una oportunidad, [conecta con Daniel en LinkedIn](https://www.linkedin.com/in/daniel-santiago-mayorga-tellez-5bb0463a0/).
-
-[Sobre mí](#sobre-mi) · [Proyectos](#proyectos) · [Tecnologías](#tecnologias) · [Colaboración](#colaboracion) · [Portafolio](#portafolio) · [Hoja de vida](#hoja-de-vida) · [Contacto](#contacto)
-
-<a id="proyectos"></a>
-
-<picture><img src="./assets/profile/divider.svg" width="100%" alt=""></picture>
-
-## <picture><img src="./assets/profile/icon-projects.svg" width="26" height="26" alt=""></picture> Proyectos destacados
-
-**Empieza por XEON** para ver cómo separo la conversación con IA de las decisiones del negocio. Tool Rental muestra un flujo de alquileres; Motion Studio, una herramienta propia para crear video con código.
+<picture>
+  <source media="(max-width: 600px) and (prefers-color-scheme: dark)" srcset="./assets/profile/projects-noche-mobile.svg">
+  <source media="(max-width: 600px)" srcset="./assets/profile/projects-papel-mobile.svg">
+  <source media="(prefers-color-scheme: dark)" srcset="./assets/profile/projects-noche.svg">
+  <img src="./assets/profile/projects-papel.svg" width="100%" alt="Tres viñetas: XEON, la IA interpreta y el backend decide; Tool Rental, del catálogo a la devolución; Motion Studio, cada fotograma es una función del tiempo.">
+</picture>
 
 ### [XEON · Cotizaciones asistidas por IA](https://github.com/Dvanielx03/Xeon-agente-cotizaciones)
 
-<picture>
-  <source media="(max-width: 600px)" srcset="./assets/profile/xeon-mobile.svg">
-  <img src="./assets/profile/xeon.svg" width="100%" alt="Flujo de XEON: conversación, reglas comerciales y borrador de cotización.">
-</picture>
+Recibe solicitudes por WhatsApp o terminal, busca productos y prepara borradores de cotización. El modelo interpreta la conversación; el backend calcula precios, descuentos y disponibilidad con `Decimal`, dentro de una arquitectura hexagonal con FastAPI.
 
-Recibe solicitudes por WhatsApp o terminal, busca productos y prepara borradores de cotización. El backend calcula precios, descuentos y disponibilidad; el modelo interpreta la conversación.
-
-- **Trabajo técnico:** arquitectura hexagonal, FastAPI, interfaz de terminal y adaptadores de mensajería e IA. Los importes se calculan con `Decimal`.
-- **Compruébalo:** [arquitectura](https://github.com/Dvanielx03/Xeon-agente-cotizaciones/blob/develop/docs/ARCHITECTURE.md) y [CI aprobado con Ruff, mypy y Pytest](https://github.com/Dvanielx03/Xeon-agente-cotizaciones/actions/runs/40413280218).
-- **Estado:** prototipo con catálogo sintético por defecto. El borrador no reserva inventario ni equivale a una cotización aprobada.
+**Compruébalo:** [arquitectura](https://github.com/Dvanielx03/Xeon-agente-cotizaciones/blob/develop/docs/ARCHITECTURE.md) y [CI aprobado con Ruff, mypy y Pytest](https://github.com/Dvanielx03/Xeon-agente-cotizaciones/actions/runs/40413280218).<br>
+**Estado:** prototipo con catálogo sintético. El borrador no reserva inventario ni equivale a una cotización aprobada.
 
 ### [Tool Rental Platform · Alquiler de herramientas](https://github.com/Dvanielx03/Tool-rental-platform)
 
-<picture>
-  <source media="(max-width: 600px)" srcset="./assets/profile/rental-mobile.svg">
-  <img src="./assets/profile/rental.svg" width="100%" alt="Flujo de Tool Rental: catálogo, reserva y devolución de herramientas.">
-</picture>
+Proyecto en equipo con **Java 21, Spring Boot y PostgreSQL**: catálogo, reservas, pagos académicos y operaciones de cliente, proveedor y administrador. Mi aporte fue la integración del MVP, Docker Compose y la verificación de recorridos y persistencia.
 
-Proyecto en equipo con **Java 21, Spring Boot y PostgreSQL** para catálogo, reservas, pagos académicos y operaciones de cliente, proveedor y administrador.
-
-- **Mi aporte documentado:** integración del MVP, Docker Compose y verificación de recorridos y persistencia dentro de una arquitectura hexagonal compartida.
-- **Compruébalo:** [responsabilidades e integración](https://github.com/Dvanielx03/Tool-rental-platform/blob/develop/docs/mvp.md) y [persistencia por roles](https://github.com/Dvanielx03/Tool-rental-platform/blob/develop/docs/provider-persistence.md).
-- **Estado:** validación local documentada; demo pública pendiente y pagos simulados.
+**Compruébalo:** [responsabilidades e integración](https://github.com/Dvanielx03/Tool-rental-platform/blob/develop/docs/mvp.md) y [persistencia por roles](https://github.com/Dvanielx03/Tool-rental-platform/blob/develop/docs/provider-persistence.md).<br>
+**Estado:** validado en local; demo pública pendiente y pagos simulados.
 
 ### [Motion Studio · Video programable para agentes](https://github.com/Dvanielx03/motion-studio-design)
 
-<picture>
-  <source media="(max-width: 600px)" srcset="./assets/profile/motion-mobile.svg">
-  <img src="./assets/profile/motion.svg" width="100%" alt="Flujo de Motion Studio: guion, fotograma y exportación MP4.">
-</picture>
+Skill abierta con licencia MIT para crear video con HTML y JavaScript, del guion al MP4. Cada fotograma depende de `window.seek(t)` y se renderiza con **Playwright, Chrome y FFmpeg**.
 
-Skill abierta con licencia MIT para crear video con HTML y JavaScript, desde el guion hasta el MP4. Cada fotograma depende de `window.seek(t)` y se renderiza con **Playwright, Chrome y FFmpeg**.
+**Compruébalo:** [video de ejemplo](https://github.com/Dvanielx03/motion-studio-design/tree/main/ejemplo) y [pruebas 2.5D](https://github.com/Dvanielx03/motion-studio-design/blob/main/docs/analysis/2026-11-06-make-short-integrado.md).<br>
+**Estado:** render validado principalmente en Windows 11 con RTX 3050.
 
-- **Trabajo técnico:** composición reproducible, render por segmentos y revisión audiovisual.
-- **Compruébalo:** [video de ejemplo](https://github.com/Dvanielx03/motion-studio-design/tree/main/ejemplo), [pruebas 2.5D](https://github.com/Dvanielx03/motion-studio-design/blob/main/docs/analysis/2026-11-06-make-short-integrado.md) y [actualización del 6 de noviembre de 2026](https://github.com/Dvanielx03/motion-studio-design/commit/1ebed6c5fef0cc8c5dfdd47b1bdc7bce92c68b42).
-- **Estado:** render validado principalmente en Windows 11 con RTX 3050. El acabado requiere revisión visual y escucha.
-
-<a id="tecnologias"></a>
-
-<picture><img src="./assets/profile/divider.svg" width="100%" alt=""></picture>
-
-## <picture><img src="./assets/profile/icon-tech.svg" width="26" height="26" alt=""></picture> Tecnologías aplicadas
+## Tecnologías
 
 <picture>
-  <source media="(max-width: 600px)" srcset="./assets/profile/technologies-mobile.svg">
-  <img src="./assets/profile/technologies.svg" width="100%" alt="Tecnologías principales: Java, Spring Boot, Python, FastAPI, PostgreSQL y Docker.">
+  <source media="(max-width: 600px) and (prefers-color-scheme: dark)" srcset="./assets/profile/technologies-noche-mobile.svg">
+  <source media="(max-width: 600px)" srcset="./assets/profile/technologies-papel-mobile.svg">
+  <source media="(prefers-color-scheme: dark)" srcset="./assets/profile/technologies-noche.svg">
+  <img src="./assets/profile/technologies-papel.svg" width="100%" alt="Tecnologías principales: Java, Spring Boot, Python, FastAPI, PostgreSQL y Docker.">
 </picture>
 
-- **Backend Java:** Java, Spring Boot, JPA/Hibernate y Maven en [Tool Rental](https://github.com/Dvanielx03/Tool-rental-platform) y el [backend clínico](https://github.com/Dvanielx03/SpringBootDataJPA-DDD).
-- **Backend Python:** Python, FastAPI, Pydantic y Typer en [XEON](https://github.com/Dvanielx03/Xeon-agente-cotizaciones).
-- **Datos:** PostgreSQL y Flyway en Tool Rental y el backend clínico; SQLite y SQLAlchemy en [Campus Control](https://github.com/Dvanielx03/soluciones-rocket); SQL y PL/pgSQL en la [plataforma multiempresa de seguridad laboral y vial](https://github.com/Dvanielx03/Plataforma_multi-tenant_de_gesti-n_SST-PESV).
-- **Calidad y entrega:** Pytest, Ruff, mypy y GitHub Actions en XEON; Docker Compose en Tool Rental y Campus Control.
-- **Interfaces y video:** JavaScript y React en Tool Rental y [WildLens AI](https://github.com/Dvanielx03/fiftyone_pruebas); JavaFX en Formula1Simulator; HTML, JavaScript, Playwright y FFmpeg en Motion Studio.
+- **Java:** Spring Boot, JPA/Hibernate y Maven en Tool Rental y el [backend clínico](https://github.com/Dvanielx03/SpringBootDataJPA-DDD).
+- **Python:** FastAPI, Pydantic y Typer en XEON, con Pytest, Ruff, mypy y GitHub Actions.
+- **Datos:** PostgreSQL y Flyway; SQLite y SQLAlchemy en [Campus Control](https://github.com/Dvanielx03/soluciones-rocket); SQL y PL/pgSQL en la [plataforma multiempresa de seguridad laboral y vial](https://github.com/Dvanielx03/Plataforma_multi-tenant_de_gesti-n_SST-PESV).
+- **Interfaces y video:** JavaScript y React en Tool Rental y [WildLens AI](https://github.com/Dvanielx03/fiftyone_pruebas); JavaFX en Formula1Simulator; Playwright y FFmpeg en Motion Studio.
 
-<a id="colaboracion"></a>
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="./assets/profile/divider-noche.svg">
+  <img src="./assets/profile/divider-papel.svg" width="100%" alt="">
+</picture>
 
-<picture><img src="./assets/profile/divider.svg" width="100%" alt=""></picture>
+## Colaboración y método
 
-## <picture><img src="./assets/profile/icon-collaboration.svg" width="26" height="26" alt=""></picture> Colaboración y aportes
+**[Campus Control](https://github.com/Dvanielx03/soluciones-rocket)**: hackatón de cinco integrantes. Me encargué de la persistencia, los datos iniciales, el inventario, la importación y Docker Compose. [Responsabilidades del equipo](https://github.com/Dvanielx03/soluciones-rocket/blob/main/docs/teamResponsibilities.md) · [PR integrado](https://github.com/Dvanielx03/soluciones-rocket/pull/3).
 
-**[Campus Control](https://github.com/Dvanielx03/soluciones-rocket)**<br>
-Hackatón de cinco integrantes. Mi área abarcó persistencia, datos iniciales, inventario, importación y Docker Compose. [Responsabilidades del equipo](https://github.com/Dvanielx03/soluciones-rocket/blob/main/docs/teamResponsibilities.md) · [PR integrado: disponibilidad y detalles de reservas](https://github.com/Dvanielx03/soluciones-rocket/pull/3).
+**[Formula1Simulator](https://github.com/CondezJuan8/Formula1Simulator)**: aporté una refactorización a arquitectura hexagonal y correcciones del menú JavaFX. [PR integrado](https://github.com/CondezJuan8/Formula1Simulator/pull/4).
 
-**[Formula1Simulator](https://github.com/CondezJuan8/Formula1Simulator)**<br>
-Aporté una refactorización a arquitectura hexagonal y correcciones del menú JavaFX. [Ver el PR integrado](https://github.com/CondezJuan8/Formula1Simulator/pull/4).
-
-<picture><img src="./assets/profile/divider.svg" width="100%" alt=""></picture>
-
-## <picture><img src="./assets/profile/icon-formation.svg" width="26" height="26" alt=""></picture> Formación
-
-**Técnico Laboral en Desarrollo de Software.**
-
-<picture><img src="./assets/profile/divider.svg" width="100%" alt=""></picture>
-
-## <picture><img src="./assets/profile/icon-languages.svg" width="26" height="26" alt=""></picture> Idiomas
-
-**Español:** nativo.<br>
-**Inglés:** B2.
-
-<picture><img src="./assets/profile/divider.svg" width="100%" alt=""></picture>
-
-## <picture><img src="./assets/profile/icon-method.svg" width="26" height="26" alt=""></picture> Cómo trabajo
+**Cómo trabajo:**
 
 - Separo las reglas del negocio de los frameworks y servicios externos.
 - Versiono los cambios de base de datos con migraciones.
 - Documento el alcance, las pruebas disponibles y lo que queda pendiente.
 - Trabajo con agentes de IA mediante instrucciones escritas y revisión de cambios.
 
-<a id="portafolio"></a>
-
-<picture><img src="./assets/profile/divider.svg" width="100%" alt=""></picture>
-
-## <picture><img src="./assets/profile/icon-portfolio.svg" width="26" height="26" alt=""></picture> Portafolio web
-
-Un espacio para conocer más de sus proyectos, sus habilidades y las ideas que quiere construir.
-
-> **Próximamente:** el acceso a su portafolio web estará disponible aquí.
-
-<a id="hoja-de-vida"></a>
-
-<picture><img src="./assets/profile/divider.svg" width="100%" alt=""></picture>
-
-## <picture><img src="./assets/profile/icon-resume.svg" width="26" height="26" alt=""></picture> Hoja de vida
-
-Su formación, habilidades y proyectos en un documento que podrás guardar y consultar.
-
-> **Próximamente:** descarga de la hoja de vida en PDF.
-
-<a id="contacto"></a>
-
-<picture><img src="./assets/profile/divider.svg" width="100%" alt=""></picture>
-
-## <picture><img src="./assets/profile/icon-contact.svg" width="26" height="26" alt=""></picture> Contacto
-
 <a href="mailto:danielsantiagomayorga03@gmail.com">
 <picture>
-  <source media="(max-width: 600px)" srcset="./assets/profile/contact-mobile.svg">
-  <img src="./assets/profile/contact.svg" width="100%" alt="¿Y si creamos algo juntos? Una idea, un reto o una oportunidad.">
+  <source media="(max-width: 600px) and (prefers-color-scheme: dark)" srcset="./assets/profile/contact-noche-mobile.svg">
+  <source media="(max-width: 600px)" srcset="./assets/profile/contact-papel-mobile.svg">
+  <source media="(prefers-color-scheme: dark)" srcset="./assets/profile/contact-noche.svg">
+  <img src="./assets/profile/contact-papel.svg" width="100%" alt="¿Construimos algo juntos? Escríbeme con tu idea, tu reto o una oportunidad.">
 </picture>
 </a>
 
-¿Tienes una idea, un reto o una oportunidad para compartir? Daniel quiere conocerla y aportar su creatividad mientras sigue creciendo como desarrollador.
-
-- **LinkedIn:** [Perfil profesional](https://www.linkedin.com/in/daniel-santiago-mayorga-tellez-5bb0463a0/)
-- **Correo:** [danielsantiagomayorga03@gmail.com](mailto:danielsantiagomayorga03@gmail.com)
-- **Discord:** [Perfil de contacto](https://discord.com/users/1445751258022416415)
+Escríbeme a [danielsantiagomayorga03@gmail.com](mailto:danielsantiagomayorga03@gmail.com) o por [LinkedIn](https://www.linkedin.com/in/daniel-santiago-mayorga-tellez-5bb0463a0/).
 
 <!-- Responsable: Daniel Santiago Mayorga. Revisión: 2026-11-11.
-Revisar al publicar un proyecto o versión importante, cambiar de rol o iniciar una búsqueda laboral.
-Formación, idiomas y contactos confirmados por el titular. Experiencia laboral omitida por petición.
-Diseño y generación: docs/PROFILE-DESIGN.md y assets/profile/generate.py.
+Dirección visual «Fuera de registro»: docs/PROFILE-DESIGN.md. Generar los SVG: python assets/profile/generate.py
+Portafolio web y hoja de vida: añadir sus enlaces junto al contacto cuando estén publicados.
 -->

@@ -1,225 +1,301 @@
-"""Genera los SVG locales del perfil. Solo usa la biblioteca estándar.
+"""Genera los SVG locales del perfil (dirección «Fuera de registro»).
 
 Uso desde la raíz: python assets/profile/generate.py
-Aurora Veil adaptada en vendor/; fuentes y decisiones en docs/PROFILE-DESIGN.md.
+Solo usa la biblioteca estándar. Decisiones de diseño en docs/PROFILE-DESIGN.md.
+
+Lenguaje visual: impresión de cómic con las tintas cian y magenta desfasadas,
+trama de puntos (halftone) y contorno de tinta. Única animación: el nombre de
+la tarjeta encaja su registro a 12 fotogramas por segundo («animación a dos»).
 """
+from math import cos, hypot, pi, sin
 from pathlib import Path
 from xml.sax.saxutils import escape
 import xml.etree.ElementTree as ET
 
 ROOT = Path(__file__).resolve().parent
-C = {"bg": "#070B22", "surface": "#0E1B3A", "primary": "#3FFFE6",
-     "action": "#3FFFE6", "secondary": "#A78BFA", "accent": "#FF3D8A",
-     "white": "#FEF3C7", "muted": "#CBD5E1", "line": "#3B335F"}
-SANS = "Arial, Helvetica, sans-serif"
-MONO = "Consolas, Liberation Mono, monospace"
 
-def text(x, y, value, size=24, color="white", weight=400, font=None, extra=""):
-    return (f'<text x="{x}" y="{y}" fill="{C.get(color, color)}" '
-            f'font-family="{font or SANS}" font-size="{size}" font-weight="{weight}" '
-            f'{extra}>{escape(value)}</text>')
+# Tintas por tema. «noche» sale de la tarjeta Aurora; «papel» es su impresión clara.
+TEMAS = {
+    "noche": {"fondo": "#070B22", "panel": "#0E1B3A", "tinta": "#FEF3C7",
+              "suave": "#CBD5E1", "linea": "#3B335F", "cian": "#3FFFE6",
+              "magenta": "#FF3D8A", "violeta": "#A78BFA", "contorno": "#FEF3C7"},
+    "papel": {"fondo": "#FBF4E2", "panel": "#F3E9CF", "tinta": "#070B22",
+              "suave": "#4A4F6A", "linea": "#D9CDB0", "cian": "#00A3B4",
+              "magenta": "#D61F69", "violeta": "#6D4FD8", "contorno": "#070B22"},
+}
+SANS = "'Arial Black', 'Helvetica Neue', Arial, Helvetica, sans-serif"
+TEXTO = "Arial, Helvetica, sans-serif"
+MONO = "Consolas, 'Liberation Mono', Menlo, monospace"
+SERIF = "Fraunces, 'Playfair Display', Georgia, serif"
 
-def rect(x, y, w, h, color, radius=0, extra=""):
-    return (f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="{radius}" '
-            f'fill="{C.get(color, color)}" {extra}/>')
 
-def line(x1, y1, x2, y2, color="line", width=2, extra=""):
-    return (f'<path d="M{x1} {y1}H{x2}" fill="none" stroke="{C.get(color,color)}" '
-            f'stroke-width="{width}" {extra}/>' if y1 == y2 else
-            f'<path d="M{x1} {y1}L{x2} {y2}" fill="none" stroke="{C.get(color,color)}" '
-            f'stroke-width="{width}" {extra}/>')
+def t(x, y, valor, tam, color, peso=400, fuente=TEXTO, extra=""):
+    return (f'<text x="{x:g}" y="{y:g}" fill="{color}" font-family="{fuente}" '
+            f'font-size="{tam}" font-weight="{peso}" {extra}>{escape(valor)}</text>')
 
-def circle(x,y,r,color,extra=""):
-    return f'<circle cx="{x}" cy="{y}" r="{r}" fill="{C.get(color,color)}" {extra}/>'
 
-def write(name,w,h,body,title):
+def desfase(x, y, valor, tam, k, peso=700, fuente=SANS, d=2, extra=""):
+    """Texto impreso con las tintas cian y magenta fuera de registro."""
+    return (f'<g opacity="0.8">'
+            + t(x + d, y + d * 0.5, valor, tam, k["magenta"], peso, fuente, extra)
+            + t(x - d, y - d * 0.5, valor, tam, k["cian"], peso, fuente, extra)
+            + "</g>" + t(x, y, valor, tam, k["tinta"], peso, fuente, extra))
+
+
+def trama(x0, y0, w, h, color, paso=11, rmax=4.2, origen=(0, 0), alcance=1.0, opacidad=1.0):
+    """Trama de puntos que se agranda hacia `origen` (coordenadas relativas 0..1)."""
+    ox, oy = x0 + origen[0] * w, y0 + origen[1] * h
+    diag = hypot(w, h) * alcance
+    puntos = []
+    fila = 0
+    y = y0 + paso / 2
+    while y < y0 + h:
+        x = x0 + paso / 2 + (paso / 2 if fila % 2 else 0)
+        while x < x0 + w:
+            r = rmax * (1 - hypot(x - ox, y - oy) / diag)
+            if r > 0.5:
+                puntos.append(f'<circle cx="{x:.1f}" cy="{y:.1f}" r="{r:.1f}"/>')
+            x += paso
+        y += paso
+        fila += 1
+    return f'<g fill="{color}" opacity="{opacidad}">{"".join(puntos)}</g>'
+
+
+def guardar(nombre, w, h, cuerpo, titulo):
     svg = (f'<svg xmlns="http://www.w3.org/2000/svg" width="{w}" height="{h}" '
-           f'viewBox="0 0 {w} {h}" role="img" aria-label="{escape(title)}">'
-           f'<title>{escape(title)}</title>{body}</svg>\n')
-    (ROOT / (name + ".svg")).write_text(svg,encoding="utf-8")
-
-def hero(mobile=False):
-    w,h = (640,440) if mobile else (960,340)
-    s = rect(0,0,w,h,"bg",20)
-    s += rect(w-10,0,10,h,"primary")
-    s += text(36,42,"D / M",18,"secondary",700,MONO)
-    s += text(36,80,"CREATIVIDAD · APRENDIZAJE · TECNOLOGÍA",22 if mobile else 16,"muted",400,MONO)
-    if mobile:
-        s += text(32,151,"Ideas nuevas.",62,"white",700,extra='letter-spacing="-2"')
-        s += text(32,215,"Ganas de crecer.",62,"white",700,extra='letter-spacing="-2"')
-        y=307
-        xvals=[72,320,568]
-        labels=["EXPLORAR","COMPARTIR","CREAR"]
-        s += line(72,y,568,y,"primary",3)
-        for i,x in enumerate(xvals):
-            s += circle(x,y,10,"secondary" if i==1 else "primary")
-            s += text(x,y+47,labels[i],24,"muted",400,MONO,extra='text-anchor="middle"')
-        s += text(36,398,"Creatividad para aportar.",24,"white")
-        s += text(36,429,"Curiosidad para aprender.",24,"white")
-    else:
-        s += text(32,158,"Ideas nuevas.",68,"white",700,extra='letter-spacing="-2.3"')
-        s += text(32,230,"Ganas de crecer.",68,"white",700,extra='letter-spacing="-2.3"')
-        s += text(36,294,"Creatividad para aportar. Curiosidad para aprender.",22,"muted")
-        # Conexión visual entre explorar, compartir y crear.
-        s += '<g fill="none" stroke="#3B335F" stroke-width="1">'
-        for x in range(680,940,26):
-            s += f'<path d="M{x} 70V290"/>'
-        for y in range(80,300,26):
-            s += f'<path d="M674 {y}H930"/>'
-        s += '</g>'
-        s += '<path d="M694 110H750V176H842V240H900" fill="none" stroke="#3FFFE6" stroke-width="4"/>'
-        s += rect(695,90,36,36,"bg",8,extra='stroke="#3FFFE6" stroke-width="2"')
-        s += rect(762,144,64,64,"primary",12)
-        s += text(794,186,"{ }",25,"bg",700,MONO,extra='text-anchor="middle"')
-        s += rect(874,220,40,40,"bg",10,extra='stroke="#A78BFA" stroke-width="2"')
-        s += circle(900,240,5,"secondary")
-        s += text(696,314,"EXPLORAR / COMPARTIR / CREAR",12,"muted",400,MONO)
-    write("hero-mobile" if mobile else "hero",w,h,s,
-          "Ideas nuevas. Ganas de crecer. Creatividad para aportar y curiosidad para aprender.")
-
-def divider():
-    s = line(0,16,960,16,"line",1)
-    s += '<path d="M0 16H180L192 4H224L236 16H350" fill="none" stroke="#3FFFE6" stroke-width="2"/>'
-    s += circle(224,4,3,"accent")
-    write("divider",960,32,s,"Separador decorativo")
-
-def project(key, tag, labels, mobile=False):
-    w,h = (640,184) if mobile else (960,172)
-    s = rect(0,0,w,h,"bg",14)
-    s += rect(0,20,4,h-40,"primary",2)
-    s += text(28,37,tag,24 if mobile else 19,"secondary",700,MONO)
-    y = 90 if mobile else 89
-    positions = [92,320,548] if mobile else [124,480,836]
-    s += line(positions[0],y,positions[-1],y,"line",2)
-    for i,(x,label) in enumerate(zip(positions, labels)):
-        s += circle(x,y,16,"bg",extra='stroke="#3FFFE6" stroke-width="2"')
-        if i==1:
-            s += '<path d="M'+str(x-5)+' '+str(y-6)+'l-6 6 6 6m10-12 6 6-6 6" fill="none" stroke="#A78BFA" stroke-width="2"/>'
-        else:
-            s += rect(x-5,y-5,10,10,"secondary" if i==2 else "primary",2)
-        s += text(x,y+46,label,26 if mobile else 24,"white",600,extra='text-anchor="middle"')
-    write(key+("-mobile" if mobile else ""),w,h,s,tag+": "+", ".join(labels))
-
-def technologies(mobile=False):
-    w = 640 if mobile else 960
-    cols,rows = (2,3) if mobile else (3,2)
-    gap,pad = 12,0
-    ch = 106 if mobile else 98
-    cw=(w-(cols-1)*gap)/cols
-    h=rows*ch+(rows-1)*gap
-    items=[("Java","LÓGICA DE NEGOCIO"),("Spring Boot","APIs"),
-           ("Python","AGENTES"),("FastAPI","INTEGRACIONES"),
-           ("PostgreSQL","DATOS"),("Docker","ENTORNOS")]
-    s=""
-    for i,(name,caption) in enumerate(items):
-        x=(i%cols)*(cw+gap); y=(i//cols)*(ch+gap)
-        s += rect(x,y,cw,ch,"bg",12)
-        s += rect(x+18,y+20,4,ch-40,"secondary" if i%3==2 else "primary",2)
-        s += text(x+38,y+43,name,34 if mobile else 28,"white",700)
-        s += text(x+38,y+82 if mobile else y+77,caption,24 if mobile else 15,"muted",400,MONO)
-    write("technologies-mobile" if mobile else "technologies",w,h,s,
-          "Tecnologías principales: Java, Spring Boot, Python, FastAPI, PostgreSQL y Docker")
-
-def contact(mobile=False):
-    w,h = (640,220) if mobile else (960,190)
-    s=rect(0,0,w,h,"surface",16,extra='stroke="#A78BFA" stroke-width="2"')
-    s+=text(30,44,"TODO EMPIEZA CON UNA CONVERSACIÓN",22 if mobile else 16,"primary",700,MONO)
-    s+=text(28,105,"¿Y si creamos algo juntos?",42 if mobile else 52,"white",700,extra='letter-spacing="-1"')
-    s+=text(30,160 if mobile else 153,"Una idea, un reto o una oportunidad.",26 if mobile else 22,"white")
-    s+='<path d="M'+str(w-75)+' 38h30m-12-12 12 12-12 12" fill="none" stroke="#3FFFE6" stroke-width="3"/>'
-    write("contact-mobile" if mobile else "contact",w,h,s,
-          "¿Y si creamos algo juntos? Una idea, un reto o una oportunidad.")
-
-def button():
-    s=rect(0,0,296,48,"action",8)
-    s+=text(20,30,"Compartamos una idea",18,"bg",700)
-    s+='<path d="M259 24h18m-7-7 7 7-7 7" stroke="#070B22" stroke-width="2" fill="none"/>'
-    write("contact-button",296,48,s,"Compartamos una idea por correo")
-
-def icon(name,paths):
-    s='<g fill="none" stroke="#3FFFE6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">'+paths+'</g>'
-    write("icon-"+name,28,28,rect(0,0,28,28,"surface",6)+s,"")
+           f'viewBox="0 0 {w} {h}" role="img" aria-label="{escape(titulo)}">'
+           f'<title>{escape(titulo)}</title>{cuerpo}</svg>\n')
+    (ROOT / f"{nombre}.svg").write_text(svg, encoding="utf-8")
 
 
-def aurora(mobile=False, still=False):
-    """Personaliza Aurora Veil; la escena y sus filtros proceden de vendor/."""
+# ---------------------------------------------------------------- Tarjeta
+
+# Recorrido del cian hasta encajar, un valor por fotograma a 12 fps.
+PASOS = ["-30 -8", "-21 -6", "-14 -4", "-9 -3", "-5 -2", "-3 -1", "-2 -1"]
+
+
+def registro(signo):
+    """Animación discreta a 12 fps que lleva una tinta a su sitio."""
+    valores = ";".join(" ".join(str(float(v) * signo) for v in p.split()) for p in PASOS)
+    return (f'<animateTransform attributeName="transform" type="translate" '
+            f'values="{valores}" dur="{len(PASOS) / 12:.3f}s" calcMode="discrete" '
+            f'begin="0.35s" fill="freeze"/>')
+
+
+def tarjeta(movil=False, quieta=False):
+    """Aurora Veil (vendor/, MIT) con el nombre impreso fuera de registro."""
     ns = "http://www.w3.org/2000/svg"
     ET.register_namespace("", ns)
     original = ET.parse(ROOT / "vendor" / "aurora-veil.svg").getroot()
-    w = 640 if mobile else 1200
+    w = 640 if movil else 1200
+    k = TEMAS["noche"]
     svg = ET.Element(f"{{{ns}}}svg", {
         "viewBox": f"0 0 {w} 420", "width": str(w), "height": "420",
-        "role": "img", "aria-label": "Daniel Santiago Mayorga, Junior Backend Developer"
-    })
-    svg.append(ET.Comment(
-        "Adapted from Aurora Veil, beydemirfurkan/awesome-github-profile.\n"
-        + (ROOT / "vendor" / "LICENSE").read_text(encoding="utf-8").strip()
-    ))
+        "role": "img", "aria-label": "Daniel Santiago Mayorga, Junior Backend Developer"})
+    svg.append(ET.Comment("Adapted from Aurora Veil, beydemirfurkan/awesome-github-profile.\n"
+                          + (ROOT / "vendor" / "LICENSE").read_text(encoding="utf-8").strip()))
     ET.SubElement(svg, f"{{{ns}}}title").text = "Daniel Santiago Mayorga"
     ET.SubElement(svg, f"{{{ns}}}desc").text = (
-        "Junior Backend Developer. Java, Python y SQL. "
-        "Aurora en turquesa, violeta y magenta sobre un paisaje nocturno."
-    )
-    children = list(original)
-    svg.append(children[0])
-    scene = ET.SubElement(svg, f"{{{ns}}}g",
-                          {"transform": "translate(-280 0)"} if mobile else {})
-    for child in children[1:]:
-        # La primera familia Fraunces inicia el bloque de identidad original.
-        if "Fraunces" in child.get("font-family", ""):
+        "Junior Backend Developer. Java, Python y SQL. Nombre impreso con tintas "
+        "cian y magenta fuera de registro sobre una aurora nocturna.")
+    hijos = list(original)
+    svg.append(hijos[0])
+    escena = ET.SubElement(svg, f"{{{ns}}}g", {"transform": "translate(-280 0)"} if movil else {})
+    for hijo in hijos[1:]:
+        if "Fraunces" in hijo.get("font-family", ""):
             break
-        scene.append(child)
+        escena.append(hijo)
 
-    serif = "Fraunces, Playfair Display, Georgia, serif"
-    if mobile:
-        labels = text(32,42,"Dvanielx03",20,"muted",400,MONO)
-        labels += text(32,316,"Daniel Santiago",54,"white",500,serif,
-                       extra='font-style="italic" letter-spacing="-1.2"')
-        labels += text(32,374,"Mayorga",58,"white",500,serif,
-                       extra='font-style="italic" letter-spacing="-1.2"')
-        labels += text(36,410,"JUNIOR BACKEND DEVELOPER",22,"primary",400,MONO,
-                       extra='letter-spacing="2"')
+    # Esquina de trama magenta, como una página impresa.
+    capa = trama(w - 300, 0, 300, 170, k["magenta"], 12, 4.6, (1, 0), 1.0, 0.45)
+
+    def nombre(x, y, valor, tam):
+        estilo = 'font-style="italic" letter-spacing="-1.2"'
+        cian = t(x, y, valor, tam, k["cian"], 500, SERIF, estilo)
+        magenta = t(x, y, valor, tam, k["magenta"], 500, SERIF, estilo)
+        crema = t(x, y, valor, tam, k["tinta"], 500, SERIF, estilo)
+        anim_m = "" if quieta else registro(-1)
+        anim_c = "" if quieta else registro(1)
+        return (f'<g transform="translate(2 1)" opacity="0.9">{magenta}{anim_m}</g>'
+                f'<g transform="translate(-2 -1)" opacity="0.9">{cian}{anim_c}</g>{crema}')
+
+    if movil:
+        capa += t(32, 42, "JAVA / PYTHON / SQL", 18, k["suave"], 400, MONO, 'letter-spacing="2"')
+        capa += nombre(32, 316, "Daniel Santiago", 54)
+        capa += nombre(32, 374, "Mayorga", 58)
+        capa += t(36, 410, "JUNIOR BACKEND DEVELOPER", 22, k["cian"], 400, MONO, 'letter-spacing="2"')
     else:
-        labels = text(80,42,"JAVA / PYTHON / SQL",14,"muted",400,MONO,
-                      extra='letter-spacing="3"')
-        labels += text(80,368,"Daniel Santiago Mayorga",68,"white",500,serif,
-                       extra='font-style="italic" letter-spacing="-1.5"')
-        labels += text(82,400,"JUNIOR BACKEND DEVELOPER",18,"primary",400,MONO,
-                       extra='letter-spacing="3"')
-        labels += text(1120,400,"github.com/Dvanielx03",16,"muted",400,MONO,
-                       extra='text-anchor="end"')
-    parsed = ET.fromstring(f'<g xmlns="{ns}">{labels}</g>')
-    svg.append(parsed)
-    if still:
-        for parent in svg.iter():
-            for child in list(parent):
-                if child.tag == f"{{{ns}}}animate":
-                    parent.remove(child)
-    name = "aurora-name" + ("-mobile" if mobile else "") + ("-static" if still else "")
-    (ROOT / (name + ".svg")).write_text(
-        "\n".join(row.rstrip() for row in ET.tostring(svg, encoding="unicode").splitlines())
-        + "\n", encoding="utf-8"
-    )
+        capa += t(80, 42, "JAVA / PYTHON / SQL", 14, k["suave"], 400, MONO, 'letter-spacing="3"')
+        capa += nombre(80, 368, "Daniel Santiago Mayorga", 68)
+        capa += t(82, 400, "JUNIOR BACKEND DEVELOPER", 18, k["cian"], 400, MONO, 'letter-spacing="3"')
+        capa += t(1120, 400, "github.com/Dvanielx03", 16, k["suave"], 400, MONO, 'text-anchor="end"')
+    svg.append(ET.fromstring(f'<g xmlns="{ns}">{capa}</g>'))
 
-for mobile in (False,True):
-    aurora(mobile)
-    aurora(mobile, still=True)
-    hero(mobile)
-    project("xeon","COTIZACIÓN ASISTIDA",["Conversación","Reglas","Borrador"],mobile)
-    project("rental","GESTIÓN DE ALQUILERES",["Catálogo","Reserva","Devolución"],mobile)
-    project("motion","VIDEO CON CÓDIGO",["Guion","Fotograma","MP4"],mobile)
-    technologies(mobile)
-    contact(mobile)
-divider()
-button()
-icon("about",'<circle cx="14" cy="8" r="5"/><path d="M4 25v-3a10 10 0 0 1 20 0v3"/>')
-icon("projects",'<path d="M4 8h7l2-3h11v18H4z"/><path d="M4 11h20"/>')
-icon("tech",'<rect x="6" y="6" width="16" height="16" rx="3"/><path d="M10 2v4m8-4v4m-8 16v4m8-4v4M2 10h4m-4 8h4m16-8h4m-4 8h4"/><path d="m12 11-3 3 3 3m4-6 3 3-3 3"/>')
-icon("collaboration",'<circle cx="8" cy="6" r="3"/><circle cx="20" cy="6" r="3"/><circle cx="14" cy="22" r="3"/><path d="M8 9v4q0 4 6 6m6-10v4q0 4-6 6"/>')
-icon("formation",'<path d="m2 10 12-6 12 6-12 6z"/><path d="M6 12v7q8 7 16 0v-7m3 0v9"/>')
-icon("languages",'<circle cx="14" cy="14" r="11"/><path d="M3 14h22M14 3q-10 11 0 22M14 3q10 11 0 22"/>')
-icon("method",'<path d="M5 6h5v5H5zM18 17h5v5h-5zM10 8h8v6m-3-3 3 3 3-3M8 11v9h10"/>')
-icon("portfolio",'<rect x="3" y="5" width="22" height="18" rx="2"/><path d="M3 10h22m-18-3h1m3 0h1m3 0h1m-5 7-3 3 3 3m6-6 3 3-3 3"/>')
-icon("resume",'<path d="M6 3h10l6 6v16H6zM16 3v7h6M14 13v8m-3-3 3 3 3-3"/>')
-icon("contact",'<rect x="3" y="6" width="22" height="16" rx="3"/><path d="m4 8 10 8L24 8"/>')
-print("Generados",len(list(ROOT.glob("*.svg"))),"SVG locales.")
+    if quieta:
+        for padre in svg.iter():
+            for hijo in list(padre):
+                if hijo.tag in (f"{{{ns}}}animate", f"{{{ns}}}animateTransform"):
+                    padre.remove(hijo)
+    nombre_archivo = "aurora-name" + ("-mobile" if movil else "") + ("-static" if quieta else "")
+    texto = ET.tostring(svg, encoding="unicode")
+    (ROOT / f"{nombre_archivo}.svg").write_text(
+        "\n".join(fila.rstrip() for fila in texto.splitlines()) + "\n", encoding="utf-8")
+
+
+# ---------------------------------------------------------------- Piezas
+
+
+def divisor(tema):
+    k = TEMAS[tema]
+    w, h = 960, 24
+    s = ""
+    for capa, color, dx in (("m", k["magenta"], 2), ("c", k["cian"], -2)):
+        puntos = []
+        for i in range(48):
+            x = 10 + i * 20
+            # Puntos que crecen y se apagan, como una tira de trama.
+            r = 4.5 * max(0.0, 1 - abs(i - 9) / 22) if i < 31 else 0
+            if r > 0.6:
+                puntos.append(f'<circle cx="{x + dx}" cy="{12 + dx / 2:g}" r="{r:.1f}"/>')
+        s += f'<g fill="{color}" opacity="0.85">{"".join(puntos)}</g>'
+    s += f'<path d="M640 12H960" stroke="{k["linea"]}" stroke-width="1"/>'
+    guardar(f"divider-{tema}", w, h, s, "Separador decorativo")
+
+
+VINETAS = [
+    ("XEON", ["La IA interpreta.", "El backend decide."], "conversación → reglas → borrador"),
+    ("TOOL RENTAL", ["Del catálogo", "a la devolución."], "catálogo → reserva → devolución"),
+    ("MOTION STUDIO", ["Cada fotograma,", "una función."], "window.seek(t) → MP4"),
+]
+
+
+def glifo(i, cx, cy, k):
+    """Dibujo de línea de cada viñeta, con contorno de tinta y sombra cian."""
+    c, m, ink = k["cian"], k["magenta"], k["contorno"]
+    if i == 0:  # globo de diálogo que se convierte en llaves
+        forma = (f'<path d="M{cx-46} {cy-30}h60a10 10 0 0 1 10 10v26a10 10 0 0 1-10 10h-36l-14 14v-14h-10'
+                 f'a10 10 0 0 1-10-10v-26a10 10 0 0 1 10-10z"/>')
+        extra = t(cx - 16, cy + 6, "{ }", 22, ink, 700, MONO, 'text-anchor="middle"')
+    elif i == 1:  # etiqueta de alquiler con su ojal
+        forma = (f'<path d="M{cx-44} {cy-28}h56l26 28-26 28h-56z"/>'
+                 f'<circle cx="{cx+16}" cy="{cy}" r="6"/>')
+        extra = ""
+    else:  # fotograma de película
+        forma = (f'<rect x="{cx-46}" y="{cy-30}" width="84" height="60" rx="4"/>'
+                 f'<path d="M{cx-46} {cy-18}h84M{cx-46} {cy+18}h84"/>')
+        extra = "".join(f'<rect x="{cx-40+j*16}" y="{cy-27}" width="7" height="6" fill="{ink}"/>' for j in range(5))
+    return (f'<g transform="translate(5 4)" fill="none" stroke="{c}" stroke-width="4" stroke-linejoin="round">{forma}</g>'
+            f'<g fill="none" stroke="{m}" stroke-width="4" stroke-linejoin="round" opacity="0.6" transform="translate(2 2)">{forma}</g>'
+            f'<g fill="none" stroke="{ink}" stroke-width="3" stroke-linejoin="round">{forma}</g>{extra}')
+
+
+def triptico(tema, movil=False):
+    k = TEMAS[tema]
+    if movil:
+        w, ph, gap = 640, 230, 18
+        h = 3 * ph + 2 * gap
+        cajas = [(0, i * (ph + gap), w, ph) for i in range(3)]
+    else:
+        w, h, gap = 960, 300, 16
+        pw = (w - 2 * gap) / 3
+        cajas = [(i * (pw + gap), 0, pw, h) for i in range(3)]
+    s = ""
+    for i, ((x, y, pw, ph), (nombre, lineas, flujo)) in enumerate(zip(cajas, VINETAS)):
+        clip = f"v{i}"
+        s += f'<clipPath id="{clip}"><rect x="{x:g}" y="{y:g}" width="{pw:g}" height="{ph:g}" rx="6"/></clipPath>'
+        s += f'<rect x="{x:g}" y="{y:g}" width="{pw:g}" height="{ph:g}" rx="6" fill="{k["fondo"]}"/>'
+        # La trama vive en la esquina superior derecha, lejos del texto.
+        alto_trama = ph * (0.5 if movil else 0.55)
+        s += f'<g clip-path="url(#{clip})">{trama(x + pw * 0.4, y, pw * 0.6, alto_trama, k["magenta"] if i != 1 else k["cian"], 11, 4, (1, 0), 1.0, 0.35)}</g>'
+        s += f'<rect x="{x + 1.5:g}" y="{y + 1.5:g}" width="{pw - 3:g}" height="{ph - 3:g}" rx="6" fill="none" stroke="{k["contorno"]}" stroke-width="3"/>'
+        # Cuadro de narración con el nombre del proyecto.
+        etiqueta_w = len(nombre) * 11.5 + 24
+        s += f'<rect x="{x + 16:g}" y="{y + 16:g}" width="{etiqueta_w:g}" height="30" fill="{k["tinta"]}"/>'
+        s += t(x + 28, y + 37, nombre, 16, k["fondo"], 700, MONO, 'letter-spacing="1"')
+        if movil:
+            s += glifo(i, x + pw - 100, y + 78, k)
+            s += desfase(x + 22, y + 140, lineas[0], 34, k, d=1.5)
+            s += desfase(x + 22, y + 180, lineas[1], 34, k, d=1.5)
+            s += t(x + 24, y + 212, flujo, 20, k["suave"], 400, MONO)
+        else:
+            s += glifo(i, x + pw / 2, y + 112, k)
+            s += desfase(x + 20, y + 212, lineas[0], 25, k, d=1.5)
+            s += desfase(x + 20, y + 244, lineas[1], 25, k, d=1.5)
+            s += t(x + 21, y + 276, flujo, 13, k["suave"], 400, MONO)
+    nombre_archivo = f"projects-{tema}" + ("-mobile" if movil else "")
+    guardar(nombre_archivo, w, h, s,
+            "Tres viñetas: XEON, la IA interpreta y el backend decide; Tool Rental, del catálogo "
+            "a la devolución; Motion Studio, cada fotograma es una función del tiempo.")
+
+
+TECNOLOGIAS = ["Java", "Spring Boot", "Python", "FastAPI", "PostgreSQL", "Docker"]
+
+
+def pegatinas(tema, movil=False):
+    k = TEMAS[tema]
+    cols = 3 if movil else 6
+    w = 640 if movil else 960
+    gap = 16
+    cw = (w - (cols - 1) * gap - 8) / cols
+    ch = 76 if movil else 64
+    filas = (len(TECNOLOGIAS) + cols - 1) // cols
+    h = filas * ch + (filas - 1) * gap + 8
+    tam = 25 if movil else 19
+    s = ""
+    for i, nombre in enumerate(TECNOLOGIAS):
+        x = (i % cols) * (cw + gap)
+        y = (i // cols) * (ch + gap)
+        sombra = k["cian"] if i % 2 == 0 else k["magenta"]
+        s += f'<rect x="{x + 6:g}" y="{y + 6:g}" width="{cw:g}" height="{ch:g}" rx="10" fill="{sombra}"/>'
+        s += (f'<rect x="{x + 1.5:g}" y="{y + 1.5:g}" width="{cw - 3:g}" height="{ch - 3:g}" rx="10" '
+              f'fill="{k["fondo"]}" stroke="{k["contorno"]}" stroke-width="3"/>')
+        s += t(x + cw / 2, y + ch / 2 + tam * 0.36, nombre, tam, k["tinta"], 700, TEXTO, 'text-anchor="middle"')
+    guardar(f"technologies-{tema}" + ("-mobile" if movil else ""), w, h, s,
+            "Tecnologías principales: " + ", ".join(TECNOLOGIAS))
+
+
+def telarana(cx, cy, radio, k):
+    """Esquina de telaraña dibujada con puntos que se desvanecen hacia fuera."""
+    s = ""
+    angulos = [pi + j * (pi / 2) / 5 for j in range(6)]  # cuarto de círculo hacia arriba-izquierda
+    for a in angulos:
+        x, y = cx + radio * cos(a), cy + radio * sin(a)
+        s += f'<path d="M{cx} {cy}L{x:.1f} {y:.1f}"/>'
+    for n, r in enumerate((0.25, 0.45, 0.65, 0.85)):
+        pts = []
+        for j, a in enumerate(angulos):
+            pts.append(f"{cx + radio * r * cos(a):.1f} {cy + radio * r * sin(a):.1f}")
+        s += f'<path d="M{"L".join(pts)}" opacity="{1 - n * 0.2:.1f}"/>'
+    return (f'<g fill="none" stroke="{k["magenta"]}" stroke-width="3.2" stroke-linecap="round" '
+            f'stroke-dasharray="0 9">{s}</g>')
+
+
+def cierre(tema, movil=False):
+    k = TEMAS[tema]
+    w, h = (640, 260) if movil else (960, 210)
+    s = f'<rect x="1.5" y="1.5" width="{w - 3}" height="{h - 3}" rx="8" fill="{k["fondo"]}" stroke="{k["contorno"]}" stroke-width="3"/>'
+    s += telarana(w - 4, h - 4, 200 if movil else 190, k)
+    s += f'<rect x="24" y="24" width="{"236" if movil else "196"}" height="30" fill="{k["tinta"]}"/>'
+    s += t(36, 45, "CONTINUARÁ…", 20 if movil else 16, k["fondo"], 700, MONO, 'letter-spacing="1"')
+    if movil:
+        s += desfase(28, 128, "¿Construimos", 46, k)
+        s += desfase(28, 182, "algo juntos?", 46, k)
+        s += t(30, 228, "Escríbeme con tu idea o tu reto.", 24, k["suave"])
+    else:
+        s += desfase(28, 124, "¿Construimos algo juntos?", 48, k)
+        s += t(30, 170, "Escríbeme con tu idea, tu reto o una oportunidad.", 21, k["suave"])
+    guardar(f"contact-{tema}" + ("-mobile" if movil else ""), w, h, s,
+            "¿Construimos algo juntos? Escríbeme con tu idea, tu reto o una oportunidad.")
+
+
+if __name__ == "__main__":
+    for movil in (False, True):
+        tarjeta(movil)
+        tarjeta(movil, quieta=True)
+        for tema in TEMAS:
+            triptico(tema, movil)
+            pegatinas(tema, movil)
+            cierre(tema, movil)
+    for tema in TEMAS:
+        divisor(tema)
+    print("Generados", len(list(ROOT.glob("*.svg"))), "SVG locales.")
