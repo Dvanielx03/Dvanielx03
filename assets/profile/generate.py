@@ -136,7 +136,7 @@ def button():
 def icon(name,paths):
     s='<g fill="none" stroke="#4D7CFE" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">'+paths+'</g>'
     write("icon-"+name,28,28,s,"")
-    
+
 for mobile in (False,True):
     hero(mobile)
     project("xeon","COTIZACIÓN ASISTIDA",["Conversación","Reglas","Borrador"],mobile)

@@ -13,11 +13,13 @@ Desarrollo APIs, bases de datos e integraciones para procesos como cotizaciones,
 
 Cuéntame qué proceso quieres resolver y qué necesitas conectar. [También puedes encontrarme en LinkedIn](https://www.linkedin.com/in/daniel-santiago-mayorga-tellez-5bb0463a0/).
 
-[Proyectos](#proyectos-destacados) · [Tecnologías](#tecnologías-aplicadas) · [Colaboración](#colaboración-y-aportes) · [Contacto](#contacto)
+[Proyectos](#proyectos) · [Tecnologías](#tecnologias) · [Colaboración](#colaboracion) · [Contacto](#contacto)
 
-<img src="./assets/profile/divider.svg" width="100%" alt="">
+<a id="proyectos"></a>
 
-## <img src="./assets/profile/icon-projects.svg" width="26" height="26" alt=""> Proyectos destacados
+<picture><img src="./assets/profile/divider.svg" width="100%" alt=""></picture>
+
+## <picture><img src="./assets/profile/icon-projects.svg" width="26" height="26" alt=""></picture> Proyectos destacados
 
 **Empieza por XEON** para ver cómo separo la conversación con IA de las decisiones del negocio. Tool Rental muestra un flujo de alquileres; Motion Studio, una herramienta propia para crear video con código.
 
@@ -60,9 +62,11 @@ Skill abierta con licencia MIT para crear video con HTML y JavaScript, desde el 
 - **Compruébalo:** [video de ejemplo](https://github.com/Dvanielx03/motion-studio-design/tree/main/ejemplo), [pruebas 2.5D](https://github.com/Dvanielx03/motion-studio-design/blob/main/docs/analysis/2026-11-06-make-short-integrado.md) y [actualización del 6 de noviembre de 2026](https://github.com/Dvanielx03/motion-studio-design/commit/1ebed6c5fef0cc8c5dfdd47b1bdc7bce92c68b42).
 - **Estado:** render validado principalmente en Windows 11 con RTX 3050. El acabado requiere revisión visual y escucha.
 
-<img src="./assets/profile/divider.svg" width="100%" alt="">
+<a id="tecnologias"></a>
 
-## <img src="./assets/profile/icon-tech.svg" width="26" height="26" alt=""> Tecnologías aplicadas
+<picture><img src="./assets/profile/divider.svg" width="100%" alt=""></picture>
+
+## <picture><img src="./assets/profile/icon-tech.svg" width="26" height="26" alt=""></picture> Tecnologías aplicadas
 
 <picture>
   <source media="(max-width: 600px)" srcset="./assets/profile/technologies-mobile.svg">
@@ -75,9 +79,11 @@ Skill abierta con licencia MIT para crear video con HTML y JavaScript, desde el 
 - **Calidad y entrega:** Pytest, Ruff, mypy y GitHub Actions en XEON; Docker Compose en Tool Rental y Campus Control.
 - **Interfaces y video:** JavaScript y React en Tool Rental y [WildLens AI](https://github.com/Dvanielx03/fiftyone_pruebas); JavaFX en Formula1Simulator; HTML, JavaScript, Playwright y FFmpeg en Motion Studio.
 
-<img src="./assets/profile/divider.svg" width="100%" alt="">
+<a id="colaboracion"></a>
 
-## <img src="./assets/profile/icon-collaboration.svg" width="26" height="26" alt=""> Colaboración y aportes
+<picture><img src="./assets/profile/divider.svg" width="100%" alt=""></picture>
+
+## <picture><img src="./assets/profile/icon-collaboration.svg" width="26" height="26" alt=""></picture> Colaboración y aportes
 
 **[Campus Control](https://github.com/Dvanielx03/soluciones-rocket)**<br>
 Hackatón de cinco integrantes. Mi área abarcó persistencia, datos iniciales, inventario, importación y Docker Compose. [Responsabilidades del equipo](https://github.com/Dvanielx03/soluciones-rocket/blob/main/docs/teamResponsibilities.md) · [PR integrado: disponibilidad y detalles de reservas](https://github.com/Dvanielx03/soluciones-rocket/pull/3).
@@ -85,31 +91,33 @@ Hackatón de cinco integrantes. Mi área abarcó persistencia, datos iniciales, 
 **[Formula1Simulator](https://github.com/CondezJuan8/Formula1Simulator)**<br>
 Aporté una refactorización a arquitectura hexagonal y correcciones del menú JavaFX. [Ver el PR integrado](https://github.com/CondezJuan8/Formula1Simulator/pull/4).
 
-<img src="./assets/profile/divider.svg" width="100%" alt="">
+<picture><img src="./assets/profile/divider.svg" width="100%" alt=""></picture>
 
-## <img src="./assets/profile/icon-formation.svg" width="26" height="26" alt=""> Formación
+## <picture><img src="./assets/profile/icon-formation.svg" width="26" height="26" alt=""></picture> Formación
 
 **Técnico Laboral en Desarrollo de Software.**
 
-<img src="./assets/profile/divider.svg" width="100%" alt="">
+<picture><img src="./assets/profile/divider.svg" width="100%" alt=""></picture>
 
-## <img src="./assets/profile/icon-languages.svg" width="26" height="26" alt=""> Idiomas
+## <picture><img src="./assets/profile/icon-languages.svg" width="26" height="26" alt=""></picture> Idiomas
 
 **Español:** nativo.<br>
 **Inglés:** B2.
 
-<img src="./assets/profile/divider.svg" width="100%" alt="">
+<picture><img src="./assets/profile/divider.svg" width="100%" alt=""></picture>
 
-## <img src="./assets/profile/icon-method.svg" width="26" height="26" alt=""> Cómo trabajo
+## <picture><img src="./assets/profile/icon-method.svg" width="26" height="26" alt=""></picture> Cómo trabajo
 
 - Separo las reglas del negocio de los frameworks y servicios externos.
 - Versiono los cambios de base de datos con migraciones.
 - Documento el alcance, las pruebas disponibles y lo que queda pendiente.
 - Trabajo con agentes de IA mediante instrucciones escritas y revisión de cambios.
 
-<img src="./assets/profile/divider.svg" width="100%" alt="">
+<a id="contacto"></a>
 
-## <img src="./assets/profile/icon-contact.svg" width="26" height="26" alt=""> Contacto
+<picture><img src="./assets/profile/divider.svg" width="100%" alt=""></picture>
+
+## <picture><img src="./assets/profile/icon-contact.svg" width="26" height="26" alt=""></picture> Contacto
 
 <a href="mailto:danielsantiagomayorga03@gmail.com">
 <picture>
