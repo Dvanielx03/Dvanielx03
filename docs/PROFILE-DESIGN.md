@@ -41,6 +41,15 @@ La tarjeta del nombre adapta directamente [Aurora Veil](https://github.com/beyde
 
 La escena animada se mantiene en las variantes de escritorio y móvil. Las dos variantes estáticas eliminan todos los elementos animate, conservando los colores, el paisaje y el texto. Solo una de las cuatro fuentes se muestra en cada viewport. La preferencia de movimiento reducido la evalúa el navegador mediante la etiqueta picture.
 
+## Verificación de Aurora Veil
+
+- Los SVG animados conservan 20 elementos SMIL; las dos alternativas estáticas no contienen ninguno.
+- La cabecera H1 conserva nombre y rol como nombre accesible de la imagen.
+- La vista de preparación cargó las 23 imágenes del README sin errores. A 390 px seleccionó la composición móvil y no presentó desbordamiento horizontal del cuerpo.
+- Se observó variación de la aurora en capturas separadas del SVG abierto directamente y de la tarjeta incrustada en el README.
+- Los contrastes de la decoración son 17,46:1 para texto sobre el panel, 13,10:1 para etiquetas, 7,14:1 para acentos violetas y 15,42:1 para el texto oscuro del botón turquesa. Los iconos tienen fondo propio para conservar el contraste en superficies claras y oscuras.
+- La generación usa únicamente la biblioteca estándar y conserva una copia de la fuente y su licencia. No se añade ningún proveedor externo de imágenes.
+
 ## Mantenimiento
 
 Ejecutar desde la raíz del repositorio:
