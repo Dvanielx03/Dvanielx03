@@ -223,6 +223,10 @@ def horizonte(w):
     return s
 
 
+ROL = "JUNIOR BACKEND · AI ENGINEERING · CREADOR DE CONTENIDO"
+ROL_MOVIL = "BACKEND · IA · CREADOR DE CONTENIDO"
+
+
 def tarjeta(movil=False, quieta=False):
     """Aurora Veil (vendor/, MIT) recoloreada, con azoteas, Daniel y su nombre."""
     ns = "http://www.w3.org/2000/svg"
@@ -232,12 +236,12 @@ def tarjeta(movil=False, quieta=False):
     k = TEMAS["noche"]
     svg = ET.Element(f"{{{ns}}}svg", {
         "viewBox": f"0 0 {w} 420", "width": str(w), "height": "420",
-        "role": "img", "aria-label": "Daniel Santiago Mayorga, Junior Backend Developer"})
+        "role": "img", "aria-label": "Daniel Santiago Mayorga: Junior Backend Developer, AI Engineering y creador de contenido"})
     svg.append(ET.Comment("Adapted from Aurora Veil, beydemirfurkan/awesome-github-profile.\n"
                           + (ROOT / "vendor" / "LICENSE").read_text(encoding="utf-8").strip()))
     ET.SubElement(svg, f"{{{ns}}}title").text = "Daniel Santiago Mayorga"
     ET.SubElement(svg, f"{{{ns}}}desc").text = (
-        "Junior Backend Developer. Java, Python y SQL. Ilustración de Daniel con traje negro "
+        "Junior Backend Developer, AI Engineering y creador de contenido. Ilustración de Daniel con traje negro "
         "de líneas rojas y la máscara en la mano, sobre las azoteas de una ciudad de noche.")
     hijos = list(original)
     svg.append(hijos[0])
@@ -291,7 +295,7 @@ def tarjeta(movil=False, quieta=False):
         return franjas
 
     if movil:
-        capa += t(32, 42, "JAVA / PYTHON / SQL", 18, k["suave"], 400, MONO, 'letter-spacing="2"')
+        capa += t(32, 42, "JAVA / PYTHON / SQL / IA", 18, k["suave"], 400, MONO, 'letter-spacing="2"')
         x0, y0, esc = 448, 34, 0.62
         capa += f'<g transform="translate({x0} {y0}) scale({esc})">{personaje(animado)}</g>'
         capa += sentido_aracnido(x0 + 120 * esc, y0 + 62 * esc, esc, animado)
@@ -299,19 +303,20 @@ def tarjeta(movil=False, quieta=False):
         capa += nombre(32, 374, "Mayorga", 58, 50)
         rol_y = 410
     else:
-        capa += t(80, 42, "JAVA / PYTHON / SQL", 14, k["suave"], 400, MONO, 'letter-spacing="3"')
+        capa += t(80, 42, "JAVA / PYTHON / SQL / IA", 14, k["suave"], 400, MONO, 'letter-spacing="3"')
         x0, y0, esc = 900, 46, 0.96
         capa += f'<g transform="translate({x0} {y0}) scale({esc})">{personaje(animado)}</g>'
         capa += sentido_aracnido(x0 + 120 * esc, y0 + 62 * esc, esc, animado)
         capa += nombre(80, 368, "Daniel Santiago Mayorga", 68, 58)
         rol_y = 400
-    rol_x, rol_tam = (36, 22) if movil else (82, 18)
+    rol_x, rol_tam = (34, 18) if movil else (82, 17)
+    rol = ROL_MOVIL if movil else ROL
     destello = ""
     if animado:
-        rol_azul = t(rol_x - 3, rol_y, "JUNIOR BACKEND DEVELOPER", rol_tam, k["azul"], 700, MONO, 'letter-spacing="3"')
+        rol_azul = t(rol_x - 3, rol_y, rol, rol_tam, k["azul"], 700, MONO, f'letter-spacing="{2 if movil else 3}"')
         destello = (f'<g opacity="0">{rol_azul}'
                     + anim("0;1;0;1;0", 5.0, "opacity", tiempos="0;0.6;0.617;0.633;0.65") + "</g>")
-    capa += t(rol_x, rol_y, "JUNIOR BACKEND DEVELOPER", rol_tam, k["amarillo"], 700, MONO, 'letter-spacing="3"')
+    capa += t(rol_x, rol_y, rol, rol_tam, k["amarillo"], 700, MONO, f'letter-spacing="{2 if movil else 3}"')
     capa += destello
     svg.append(ET.fromstring(f'<g xmlns="{ns}">{capa}</g>'))
 
@@ -320,7 +325,7 @@ def tarjeta(movil=False, quieta=False):
             for hijo in list(padre):
                 if hijo.tag in (f"{{{ns}}}animate", f"{{{ns}}}animateTransform"):
                     padre.remove(hijo)
-    nombre_archivo = "miles-card" + ("-mobile" if movil else "") + ("-static" if quieta else "")
+    nombre_archivo = "daniel-card" + ("-mobile" if movil else "") + ("-static" if quieta else "")
     texto = ET.tostring(svg, encoding="unicode")
     (ROOT / f"{nombre_archivo}.svg").write_text(
         "\n".join(fila.rstrip() for fila in texto.splitlines()) + "\n", encoding="utf-8")
