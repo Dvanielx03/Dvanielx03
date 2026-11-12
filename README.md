@@ -4,7 +4,7 @@
 
 Soy Daniel, **Junior Backend Developer enfocado en inteligencia artificial** (AI Engineering) y **creador de contenido**. Soy Técnico Laboral en Desarrollo de Software. Construyo APIs y bases de datos con **Java, Spring Boot, Python, FastAPI y PostgreSQL**; integro modelos de IA en productos y trabajo con agentes de IA guiados por reglas escritas y flujos de trabajo. También produzco videos con código para mis canales de YouTube, con herramientas propias como Motion Studio y workflow-studio.
 
-Lo que más me mueve es ver una idea pasar de la cabeza a algo que funciona. Me quedo probando hasta entender por qué algo sale bien o mal, aprendo mucho de las personas con las que trabajo y disfruto aportar ideas creativas para sacar un proyecto adelante.
+Me apasiona el desarrollo porque cada reto es un rompecabezas distinto. Cuando algo no funciona, no busco solo la solución más rápida: pruebo caminos creativos hasta encontrar la que de verdad encaja, y disfruto ese proceso tanto como el resultado.
 
 Español nativo · Inglés B2<br>
 [LinkedIn](https://www.linkedin.com/in/daniel-santiago-mayorga-tellez-5bb0463a0/) · [Correo](mailto:danielsantiagomayorga03@gmail.com) · [Discord](https://discord.com/users/1445751258022416415)
