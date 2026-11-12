@@ -47,19 +47,66 @@ Skill abierta con licencia MIT para crear video con HTML y JavaScript, del guion
 **Compruébalo:** [video de ejemplo](https://github.com/Dvanielx03/motion-studio-design/tree/main/ejemplo) y [pruebas 2.5D](https://github.com/Dvanielx03/motion-studio-design/blob/main/docs/analysis/2026-11-06-make-short-integrado.md).<br>
 **Estado:** render validado principalmente en Windows 11 con RTX 3050.
 
+<a id="tecnologias"></a>
+
 ## Tecnologías
 
-<picture>
-  <source media="(max-width: 600px) and (prefers-color-scheme: dark)" srcset="./assets/profile/technologies-noche-mobile.svg">
-  <source media="(max-width: 600px)" srcset="./assets/profile/technologies-papel-mobile.svg">
-  <source media="(prefers-color-scheme: dark)" srcset="./assets/profile/technologies-noche.svg">
-  <img src="./assets/profile/technologies-papel.svg" width="100%" alt="Tecnologías principales: Java, Spring Boot, Python, FastAPI, PostgreSQL y Docker.">
-</picture>
+<!-- tecnologias:inicio (generado por assets/profile/stack.py) -->
+Abre cada Tierra y toca una pegatina: verás los proyectos donde uso esa tecnología, con la prueba en el código. El número indica en cuántos proyectos públicos aparece.
 
-- **Java:** Spring Boot, JPA/Hibernate y Maven en Tool Rental y el [backend clínico](https://github.com/Dvanielx03/SpringBootDataJPA-DDD).
-- **Python:** FastAPI, Pydantic y Typer en XEON, con Pytest, Ruff, mypy y GitHub Actions.
-- **Datos:** PostgreSQL y Flyway; SQLite y SQLAlchemy en [Campus Control](https://github.com/Dvanielx03/soluciones-rocket); SQL y PL/pgSQL en la [plataforma multiempresa de seguridad laboral y vial](https://github.com/Dvanielx03/Plataforma_multi-tenant_de_gesti-n_SST-PESV).
-- **Interfaces y video:** JavaScript y React en Tool Rental y [WildLens AI](https://github.com/Dvanielx03/fiftyone_pruebas); JavaFX en Formula1Simulator; Playwright y FFmpeg en Motion Studio.
+<details open>
+<summary>
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="./assets/profile/stack/cajon-backend-noche.svg">
+  <img src="./assets/profile/stack/cajon-backend-papel.svg" width="94%" alt="TIERRA-01: Backend, 6 tecnologías">
+</picture>
+</summary>
+<br>
+
+<a href="./docs/stack/java.md"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/profile/stack/java-noche.svg"><img src="./assets/profile/stack/java-papel.svg" width="96" alt="Java: 4 proyectos"></picture></a> <a href="./docs/stack/spring-boot.md"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/profile/stack/spring-boot-noche.svg"><img src="./assets/profile/stack/spring-boot-papel.svg" width="96" alt="Spring Boot: 3 proyectos"></picture></a> <a href="./docs/stack/hibernate.md"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/profile/stack/hibernate-noche.svg"><img src="./assets/profile/stack/hibernate-papel.svg" width="96" alt="Hibernate / JPA: 2 proyectos"></picture></a> <a href="./docs/stack/maven.md"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/profile/stack/maven-noche.svg"><img src="./assets/profile/stack/maven-papel.svg" width="96" alt="Maven: 4 proyectos"></picture></a> <a href="./docs/stack/python.md"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/profile/stack/python-noche.svg"><img src="./assets/profile/stack/python-papel.svg" width="96" alt="Python: 5 proyectos"></picture></a> <a href="./docs/stack/fastapi.md"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/profile/stack/fastapi-noche.svg"><img src="./assets/profile/stack/fastapi-papel.svg" width="96" alt="FastAPI: 3 proyectos"></picture></a>
+
+</details>
+
+<details>
+<summary>
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="./assets/profile/stack/cajon-frontend-noche.svg">
+  <img src="./assets/profile/stack/cajon-frontend-papel.svg" width="94%" alt="TIERRA-02: Frontend, 7 tecnologías">
+</picture>
+</summary>
+<br>
+
+<a href="./docs/stack/html.md"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/profile/stack/html-noche.svg"><img src="./assets/profile/stack/html-papel.svg" width="96" alt="HTML: 4 proyectos"></picture></a> <a href="./docs/stack/css.md"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/profile/stack/css-noche.svg"><img src="./assets/profile/stack/css-papel.svg" width="96" alt="CSS: 3 proyectos"></picture></a> <a href="./docs/stack/javascript.md"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/profile/stack/javascript-noche.svg"><img src="./assets/profile/stack/javascript-papel.svg" width="96" alt="JavaScript: 4 proyectos"></picture></a> <a href="./docs/stack/typescript.md"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/profile/stack/typescript-noche.svg"><img src="./assets/profile/stack/typescript-papel.svg" width="96" alt="TypeScript"></picture></a> <a href="./docs/stack/react.md"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/profile/stack/react-noche.svg"><img src="./assets/profile/stack/react-papel.svg" width="96" alt="React: 3 proyectos"></picture></a> <a href="./docs/stack/tailwind.md"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/profile/stack/tailwind-noche.svg"><img src="./assets/profile/stack/tailwind-papel.svg" width="96" alt="Tailwind CSS: 1 proyectos"></picture></a> <a href="./docs/stack/vite.md"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/profile/stack/vite-noche.svg"><img src="./assets/profile/stack/vite-papel.svg" width="96" alt="Vite: 3 proyectos"></picture></a>
+
+</details>
+
+<details>
+<summary>
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="./assets/profile/stack/cajon-datos-noche.svg">
+  <img src="./assets/profile/stack/cajon-datos-papel.svg" width="94%" alt="TIERRA-03: Datos, 5 tecnologías">
+</picture>
+</summary>
+<br>
+
+<a href="./docs/stack/postgresql.md"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/profile/stack/postgresql-noche.svg"><img src="./assets/profile/stack/postgresql-papel.svg" width="96" alt="PostgreSQL: 4 proyectos"></picture></a> <a href="./docs/stack/flyway.md"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/profile/stack/flyway-noche.svg"><img src="./assets/profile/stack/flyway-papel.svg" width="96" alt="Flyway: 3 proyectos"></picture></a> <a href="./docs/stack/sqlalchemy.md"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/profile/stack/sqlalchemy-noche.svg"><img src="./assets/profile/stack/sqlalchemy-papel.svg" width="96" alt="SQLAlchemy: 2 proyectos"></picture></a> <a href="./docs/stack/sqlite.md"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/profile/stack/sqlite-noche.svg"><img src="./assets/profile/stack/sqlite-papel.svg" width="96" alt="SQLite: 1 proyectos"></picture></a> <a href="./docs/stack/supabase.md"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/profile/stack/supabase-noche.svg"><img src="./assets/profile/stack/supabase-papel.svg" width="96" alt="Supabase"></picture></a>
+
+</details>
+
+<details>
+<summary>
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="./assets/profile/stack/cajon-herramientas-noche.svg">
+  <img src="./assets/profile/stack/cajon-herramientas-papel.svg" width="94%" alt="TIERRA-04: Herramientas e IA, 8 tecnologías">
+</picture>
+</summary>
+<br>
+
+<a href="./docs/stack/git.md"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/profile/stack/git-noche.svg"><img src="./assets/profile/stack/git-papel.svg" width="96" alt="Git"></picture></a> <a href="./docs/stack/github.md"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/profile/stack/github-noche.svg"><img src="./assets/profile/stack/github-papel.svg" width="96" alt="GitHub"></picture></a> <a href="./docs/stack/vscode.md"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/profile/stack/vscode-noche.svg"><img src="./assets/profile/stack/vscode-papel.svg" width="96" alt="VS Code: 4 proyectos"></picture></a> <a href="./docs/stack/docker.md"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/profile/stack/docker-noche.svg"><img src="./assets/profile/stack/docker-papel.svg" width="96" alt="Docker: 5 proyectos"></picture></a> <a href="./docs/stack/github-actions.md"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/profile/stack/github-actions-noche.svg"><img src="./assets/profile/stack/github-actions-papel.svg" width="96" alt="GitHub Actions: 2 proyectos"></picture></a> <a href="./docs/stack/pytest.md"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/profile/stack/pytest-noche.svg"><img src="./assets/profile/stack/pytest-papel.svg" width="96" alt="Pytest: 3 proyectos"></picture></a> <a href="./docs/stack/langchain.md"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/profile/stack/langchain-noche.svg"><img src="./assets/profile/stack/langchain-papel.svg" width="96" alt="LangChain"></picture></a> <a href="./docs/stack/streamlit.md"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/profile/stack/streamlit-noche.svg"><img src="./assets/profile/stack/streamlit-papel.svg" width="96" alt="Streamlit"></picture></a>
+
+</details>
+
+<!-- tecnologias:fin -->
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="./assets/profile/divider-noche.svg">

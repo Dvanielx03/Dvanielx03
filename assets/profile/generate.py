@@ -389,9 +389,9 @@ def glifo(i, cx, cy, k):
 
 
 CSS_TRIPTICO = (
-    ".v{animation:impacto .5s steps(1) both}"
+    ".v{animation:impacto .5s steps(1) forwards}"
     ".v1{animation-delay:.33s}.v2{animation-delay:.66s}"
-    "@keyframes impacto{0%{opacity:0;transform:scale(1.12)}33%{opacity:1;transform:scale(1.05)}"
+    "@keyframes impacto{0%{opacity:1;transform:scale(1.08)}33%{opacity:1;transform:scale(1.05)}"
     "66%,100%{opacity:1;transform:scale(1)}}"
     ".v{transform-origin:center}"
     # XEON: los puntos se escriben y luego aparecen las llaves
@@ -451,49 +451,6 @@ def triptico(tema, movil=False):
     guardar(f"projects-{tema}" + ("-mobile" if movil else ""), w, h, s,
             "Tres viñetas: XEON, la IA interpreta y el backend decide; Tool Rental, del catálogo "
             "a la devolución; Motion Studio, cada fotograma es una función del tiempo.", CSS_TRIPTICO)
-
-
-# ---------------------------------------------------------------- Pegatinas
-
-TECNOLOGIAS = ["Java", "Spring Boot", "Python", "FastAPI", "PostgreSQL", "Docker"]
-GIROS = [-3, 2, -2, 3, -1, 2]
-
-
-def pegatinas(tema, movil=False):
-    k = TEMAS[tema]
-    cols = 3 if movil else 6
-    w = 640 if movil else 960
-    gap = 18
-    cw = (w - (cols - 1) * gap - 14) / cols
-    ch = 76 if movil else 64
-    filas = (len(TECNOLOGIAS) + cols - 1) // cols
-    h = filas * ch + (filas - 1) * gap + 16
-    tam = 25 if movil else 19
-    s, css = "", ""
-    for i, nombre in enumerate(TECNOLOGIAS):
-        x = (i % cols) * (cw + gap) + 4
-        y = (i // cols) * (ch + gap) + 4
-        sombra = k["rojo"] if i % 2 == 0 else k["azul"]
-        cuerpo = (f'<rect x="{x + 6:g}" y="{y + 6:g}" width="{cw:g}" height="{ch:g}" rx="10" fill="{sombra}"/>'
-                  f'<rect x="{x + 1.5:g}" y="{y + 1.5:g}" width="{cw - 3:g}" height="{ch - 3:g}" rx="10" '
-                  f'fill="{k["fondo"]}" stroke="{k["contorno"]}" stroke-width="3"/>'
-                  + t(x + cw / 2, y + ch / 2 + tam * 0.36, nombre, tam, k["tinta"], 700, TEXTO, 'text-anchor="middle"'))
-        s += f'<g class="s s{i}">{cuerpo}</g>'
-        retraso = 0.25 * i
-        # Cada pegatina se pega con un golpe y, en su turno, vuelve a «asentarse».
-        css += (f".s{i}{{transform:rotate({GIROS[i]}deg);animation:pega .42s steps(1) {retraso:.2f}s both,"
-                f"asienta 6s steps(1) {retraso + 1.5:.2f}s infinite}}"
-                f"")
-    css += (".s{transform-origin:center}"
-            "@keyframes pega{0%{opacity:0;transform:scale(1.4) rotate(0deg)}"
-            "40%{opacity:1;transform:scale(.92) rotate(0deg)}"
-            "80%,100%{opacity:1;transform:scale(1) rotate(var(--g,0deg))}}"
-            "@keyframes asienta{0%{transform:scale(1.07) rotate(0deg)}4%,100%{transform:scale(1) rotate(var(--g,0deg))}}")
-    # var(--g) para que cada pegatina conserve su giro al terminar la animación.
-    for i in range(len(TECNOLOGIAS)):
-        css += f".s{i}{{--g:{GIROS[i]}deg}}"
-    guardar(f"technologies-{tema}" + ("-mobile" if movil else ""), w, h, s,
-            "Tecnologías principales: " + ", ".join(TECNOLOGIAS), css)
 
 
 # ---------------------------------------------------------------- Cierre
@@ -564,8 +521,9 @@ if __name__ == "__main__":
         tarjeta(movil, quieta=True)
         for tema in TEMAS:
             triptico(tema, movil)
-            pegatinas(tema, movil)
             cierre(tema, movil)
     for tema in TEMAS:
         divisor(tema)
-    print("Generados", len(list(ROOT.glob("*.svg"))), "SVG locales.")
+    import stack  # pegatinas, cajones y fichas de la sección Tecnologías
+    stack.generar()
+    print("Generados", len(list(ROOT.rglob("*.svg"))), "SVG locales.")

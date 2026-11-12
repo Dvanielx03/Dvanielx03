@@ -40,10 +40,24 @@ Todas usan CSS con `steps()` dentro del SVG; la regla `prefers-reduced-motion` l
 | --- | --- |
 | Divisor | Una telaraña se dispara de izquierda a derecha y se pega con una salpicadura de puntos, cada 6 s |
 | Tríptico | Las viñetas entran con fotograma de impacto; el globo de XEON escribe «…» y pasa a `{ }`, la etiqueta de Tool Rental se balancea y la tira de Motion Studio avanza fotograma a fotograma |
-| Pegatinas | Se pegan una a una con un golpe, quedan algo giradas y cada 6 s vuelven a asentarse por turnos |
+| Cajones | El título de cada Tierra hace un glitch a saltos cada 5 s, desfasado entre cajones |
+| Pegatinas | Se pegan con un golpe y quedan algo giradas; un brillo las recorre por turnos y su contador «×N» late |
+| Fichas | El logo salta en glitch cada 4 s y el sello «VERIFICADO» cae con un golpe cada 6 s |
 | Cierre | La telaraña se teje anillo a anillo, «CONTINUARÁ…» parpadea y una araña genérica baja por su hilo |
 
-Cada pieza tiene versión noche y papel (`prefers-color-scheme`) y versión móvil a 640 px cuando contiene texto.
+Cada pieza tiene versión noche y papel (`prefers-color-scheme`) y versión móvil a 640 px cuando contiene texto. Ninguna animación empieza con la pieza oculta: si un visor no reproduce la animación, el contenido sigue visible.
+
+## Sección Tecnologías: cajones del multiverso
+
+GitHub no ejecuta JavaScript en un README y lo que hay dentro de un SVG no se puede pulsar. Por eso la sección usa lo único interactivo nativo, `<details>`: cuatro cajones plegables (Tierra-01 Backend, Tierra-02 Frontend, Tierra-03 Datos y Tierra-04 Herramientas e IA). El primero empieza abierto.
+
+Cada tecnología es una pegatina independiente dentro de un enlace. El número amarillo indica en cuántos proyectos públicos aparece. Al pulsarla se abre su ficha de expediente en `docs/stack/`, con una tabla de proyectos y un sello «VERIFICADO» que enlaza al archivo exacto donde se declara o se usa (`pom.xml`, `package.json`, `pyproject.toml`, `compose.yaml`…). Las tecnologías sin proyecto público (Supabase, y LangChain, Streamlit y TypeScript, que solo están en un repositorio privado) lo dicen en su ficha y no muestran contador.
+
+Los datos viven en `CATEGORIAS`, dentro de `assets/profile/stack.py`. El generador escribe las pegatinas, las cabeceras, las fichas y el bloque del README entre `<!-- tecnologias:inicio -->` y `<!-- tecnologias:fin -->`. Los logotipos proceden de [Simple Icons](https://github.com/simple-icons/simple-icons) (CC0), guardados en `assets/profile/vendor/simple-icons.json`; son marcas de sus titulares y solo nombran cada tecnología. VS Code no está en Simple Icons y se dibuja como una ventana de editor genérica.
+
+Antes de publicar, comprobar que todas las pruebas siguen existiendo:
+
+    python -c "import sys; sys.path.insert(0, 'assets/profile'); import stack, urllib.request; print([u for u in stack.evidencias() if urllib.request.urlopen(urllib.request.Request(u, method='HEAD')).status != 200])"
 
 ## Fuentes y licencias
 
