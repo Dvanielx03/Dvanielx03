@@ -32,6 +32,7 @@ WL = ("WildLens AI", "Dvanielx03/fiftyone_pruebas", "main")
 MS = ("Motion Studio", "Dvanielx03/motion-studio-design", "main")
 SST = ("Plataforma SST/PESV", "Dvanielx03/Plataforma_multi-tenant_de_gesti-n_SST-PESV", "main")
 SP = ("Sistema de préstamo de herramientas", "Dvanielx03/Sistema-Prestamo-Herramientas", "main")
+GF = ("GoogleFlow Studio", "Dvanielx03/googleflow-studio", "main")
 F1 = ("Formula1Simulator (aporte)", "CondezJuan8/Formula1Simulator", "develop")
 
 PRIVADO = "La uso en un proyecto privado (deportivo-langchain); su código no es público."
@@ -77,6 +78,7 @@ CATEGORIAS = [
                                         (SST, "docker-compose.yml")], ""),
         ("github-actions", "GitHub Actions", "githubactions", [(X, ".github/workflows/ci.yml"), (CC, ".github/workflows/commit-convention.yml")], ""),
         ("pytest", "Pytest", "pytest", [(X, "pyproject.toml"), (CC, "backend/requirements.txt"), (WL, "backend/requirements.txt")], ""),
+        ("google-flow", "Google Flow", "google", [(GF, "SKILL.md")], ""),
         ("langchain", "LangChain", "langchain", [], PRIVADO),
         ("streamlit", "Streamlit", "streamlit", [], PRIVADO),
     ]),
