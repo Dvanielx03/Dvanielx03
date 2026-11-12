@@ -32,7 +32,7 @@ MONO = "Consolas, 'Liberation Mono', Menlo, monospace"
 SERIF = "Fraunces, 'Playfair Display', Georgia, serif"
 
 # CSS común: todo se mueve a saltos y se detiene si se pide menos movimiento.
-CSS_BASE = ("*{transform-box:fill-box}"
+CSS_BASE = ("*{transform-box:fill-box}[transform]:not([class]){transform-box:view-box}"
             "@media (prefers-reduced-motion:reduce){*{animation:none!important}}")
 
 
@@ -520,10 +520,9 @@ if __name__ == "__main__":
         tarjeta(movil)
         tarjeta(movil, quieta=True)
         for tema in TEMAS:
-            triptico(tema, movil)
             cierre(tema, movil)
-    for tema in TEMAS:
-        divisor(tema)
     import stack  # pegatinas, cajones y fichas de la sección Tecnologías
     stack.generar()
+    import secciones  # rótulos de capítulo, portadas de proyectos, crossovers y método
+    secciones.generar()
     print("Generados", len(list(ROOT.rglob("*.svg"))), "SVG locales.")

@@ -123,7 +123,7 @@ def cuenta(usos):
 
 CSS_PEGATINA = (
     ".p{transform-origin:center;animation:pega .5s steps(1) var(--r) forwards}"
-    "@keyframes pega{0%{opacity:1;transform:scale(1.2) rotate(0deg)}"
+    "@keyframes pega{0%{opacity:1;transform:scale(1) rotate(0deg)}"
     "33%{opacity:1;transform:scale(.92) rotate(0deg)}66%,100%{opacity:1;transform:scale(1) rotate(var(--g))}}"
     ".brillo{animation:brillo 7s steps(1) var(--b) infinite}"
     "@keyframes brillo{0%,90%{transform:translateX(0)}92%{transform:translateX(90px)}"
@@ -263,10 +263,14 @@ def bloque_readme():
          f"Abre cada Tierra y toca una pegatina: verás los proyectos donde uso esa tecnología, "
          f"con la prueba en el código. El número indica en cuántos proyectos públicos aparece.\n\n")
     for orden, (cid, tierra, titulo, techs) in enumerate(CATEGORIAS):
-        s += (f"<details{' open' if orden == 0 else ''}>\n<summary>\n<picture>\n"
-              f'  <source media="(prefers-color-scheme: dark)" srcset="./assets/profile/stack/cajon-{cid}-noche.svg">\n'
-              f'  <img src="./assets/profile/stack/cajon-{cid}-papel.svg" width="94%" alt="{tierra}: {titulo}, {len(techs)} tecnologías">\n'
-              f"</picture>\n</summary>\n<br>\n\n")
+        # La pestaña es texto: GitHub convierte en enlace toda imagen sin enlace propio, y una
+        # imagen dentro de <summary> abriría el SVG en lugar de desplegar el cajón.
+        s += (f"<details{' open' if orden == 0 else ''}>\n"
+              f"<summary><kbd>{tierra}</kbd> <b>{titulo}</b> · {len(techs)} tecnologías</summary>\n<br>\n\n"
+              f'<a href="#tecnologias"><picture>'
+              f'<source media="(prefers-color-scheme: dark)" srcset="./assets/profile/stack/cajon-{cid}-noche.svg">'
+              f'<img src="./assets/profile/stack/cajon-{cid}-papel.svg" width="100%" alt="{tierra}: {titulo}, {len(techs)} tecnologías">'
+              f"</picture></a>\n\n")
         for clave, nombre, _, usos, _ in techs:
             n = cuenta(usos)
             alt = f"{nombre}: {n} proyectos" if n else nombre
