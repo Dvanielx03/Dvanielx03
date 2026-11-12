@@ -197,7 +197,114 @@ def metodo(tema, movil=False):
             "Cómo trabajo: " + " ".join(f"{a} {b}" for a, b, _ in REGLAS), css)
 
 
+# ---------------------------------------------------------------- Contacto y contraportada
+
+# (clave, etiqueta, detalle, icono, enlace). Enlace None = «PRÓXIMAMENTE», sin destino.
+CONTACTO = [
+    ("whatsapp", "WhatsApp", "+57 324 757 1239", "whatsapp", "https://wa.me/573247571239"),
+    ("gmail", "Gmail", "danielsantiagomayorga03@gmail.com", "gmail", "mailto:danielsantiagomayorga03@gmail.com"),
+]
+# Cuando existan, pon aquí la URL del portafolio y la ruta del PDF (por ejemplo ./docs/cv.pdf).
+EXTRAS = [
+    ("portafolio", "Portafolio", "Sitio web con mis proyectos", None, None),
+    ("hoja-de-vida", "Hoja de vida", "Descarga en PDF", None, None),
+]
+
+CSS_BOTON = (
+    ".flecha{animation:empuja .67s steps(1) infinite}"
+    "@keyframes empuja{0%{transform:translateX(0)}50%{transform:translateX(5px)}}"
+    ".brillo{animation:brillo 6s steps(1) var(--b) infinite}"
+    "@keyframes brillo{0%,88%{transform:translateX(0)}90%{transform:translateX(110px)}"
+    "92%{transform:translateX(210px)}94%{transform:translateX(310px)}96%,100%{transform:translateX(420px)}}")
+
+
+def boton_contacto(clave, etiqueta, detalle, icono, enlace, tema, indice):
+    k = TEMAS[tema]
+    w, h = 310, 76
+    activo = enlace is not None
+    sombra = k["rojo"] if indice % 2 == 0 else k["azul"]
+    borde = f'stroke="{k["contorno"]}" stroke-width="3"' + ("" if activo else ' stroke-dasharray="8 6"')
+    s = (f'<clipPath id="b"><rect x="2" y="2" width="296" height="64" rx="10"/></clipPath>'
+         + (f'<rect x="10" y="10" width="296" height="64" rx="10" fill="{sombra}"/>' if activo else "")
+         + f'<rect x="3.5" y="3.5" width="293" height="61" rx="9" fill="{k["fondo"]}" {borde}/>'
+         + f'<g clip-path="url(#b)"><path class="brillo" d="M-60 2h22l-30 64h-22z" fill="#FFFFFF" opacity="0.25"/></g>')
+    if icono:
+        s += (f'<g opacity="0.85">{logo(icono, 18, 20, 30, k["azul"])}{logo(icono, 22, 22, 30, k["rojo"])}</g>'
+              + logo(icono, 20, 21, 30, k["tinta"]))
+    else:
+        s += (f'<rect x="20" y="21" width="30" height="30" rx="6" fill="none" stroke="{k["tinta"]}" stroke-width="2.5"/>'
+              + t(35, 42, "★" if clave == "portafolio" else "↓", 16, k["tinta"], 700, SANS, 'text-anchor="middle"'))
+    s += t(66, 32, etiqueta, 20, k["tinta"], 700, TEXTO)
+    if activo:
+        s += t(66, 52, detalle, 11.5 if len(detalle) > 26 else 13, k["suave"], 400, MONO)
+        s += (f'<g class="flecha"><path d="M262 34h16m-6-6 6 6-6 6" fill="none" stroke="{k["tinta"]}" '
+              f'stroke-width="2.5" stroke-linecap="round"/></g>')
+    else:
+        s += t(66, 52, "PRÓXIMAMENTE", 13, k["rojo"], 700, MONO, 'letter-spacing="1.5"')
+    estado = detalle if activo else "próximamente"
+    guardar(f"button-{clave}-{tema}", w, h, s, f"{etiqueta}: {estado}", CSS_BOTON + f".brillo{{--b:{indice * 1.5:.1f}s}}")
+
+
+def contraportada(tema, movil=False):
+    """Franja final «FIN DEL N.º 01» con código de barras decorativo."""
+    k = TEMAS[tema]
+    w, h = (640, 96) if movil else (960, 80)
+    s = marcas(w, h, k["suave"])
+    s += (f'<rect x="22" y="{h / 2 - 16:.0f}" width="{len("FIN DEL N.º 01") * (20 if movil else 17) * 0.62 + 26:.0f}" height="32" fill="{k["amarillo"]}" '
+          f'stroke="{k["contorno"]}" stroke-width="2"/>'
+          + t(34, h / 2 + 7, "FIN DEL N.º 01", 20 if movil else 17, k["sobre_amarillo"], 700, MONO, 'letter-spacing="1"'))
+    if not movil:
+        s += t(216, h / 2 + 6, "Gracias por leer. El próximo número, con portafolio y hoja de vida.", 15, k["suave"], 400, TEXTO)
+    barras, x = "", w - 34
+    for n, ancho in enumerate([2, 1, 3, 1, 1, 2, 4, 1, 2, 1, 3, 2, 1, 1, 3, 1, 2, 2, 1, 3]):
+        x -= ancho * 2 + 2
+        barras += f'<rect x="{x}" y="{h / 2 - 18:.0f}" width="{ancho * 2}" height="{30 if n % 5 else 36}"/>'
+    s += f'<g fill="{k["tinta"]}">{barras}</g>'
+    s += t(w - 34, h / 2 + 30, "DSM-2026", 10, k["suave"], 400, MONO, 'text-anchor="end" letter-spacing="2"')
+    guardar(f"back-cover-{tema}" + ("-mobile" if movil else ""), w, h, s, "Fin del número 01", "")
+
+
+def _boton_md(clave, etiqueta, detalle, enlace):
+    destino = enlace or "#contacto"
+    alt = f"{etiqueta}: {detalle}" if enlace else f"{etiqueta}: próximamente"
+    return (f'<a href="{destino}"><picture><source media="(prefers-color-scheme: dark)" '
+            f'srcset="./assets/profile/button-{clave}-noche.svg"><img src="./assets/profile/button-{clave}-papel.svg" '
+            f'width="310" alt="{alt}"></picture></a>')
+
+
+def _reemplazar(texto, marca, bloque):
+    inicio, fin = texto.find(f"<!-- {marca}:inicio"), texto.find(f"<!-- {marca}:fin -->")
+    if inicio == -1 or fin == -1:
+        return texto
+    return (texto[:inicio] + f"<!-- {marca}:inicio (generado por assets/profile/secciones.py) -->\n" + bloque
+            + "\n" + texto[fin:])
+
+
+def escribir_readme():
+    """Botones de contacto y contraportada, todo en una línea por bloque (ver docs/PROFILE-DESIGN.md)."""
+    from generate import ROOT
+    readme = ROOT.parent.parent / "README.md"
+    texto = readme.read_text(encoding="utf-8")
+    contacto = " ".join(_boton_md(c, e, d, u) for c, e, d, _, u in CONTACTO)
+    franja = ('<a href="#proyectos"><picture>'
+              '<source media="(max-width: 600px) and (prefers-color-scheme: dark)" srcset="./assets/profile/back-cover-noche-mobile.svg">'
+              '<source media="(max-width: 600px)" srcset="./assets/profile/back-cover-papel-mobile.svg">'
+              '<source media="(prefers-color-scheme: dark)" srcset="./assets/profile/back-cover-noche.svg">'
+              '<img src="./assets/profile/back-cover-papel.svg" width="100%" alt="Fin del número 01"></picture></a>')
+    final = franja + "\n\n" + " ".join(_boton_md(c, e, d, u) for c, e, d, _, u in EXTRAS)
+    texto = _reemplazar(texto, "contacto", contacto)
+    texto = _reemplazar(texto, "final", final)
+    readme.write_text(texto, encoding="utf-8")
+
+
 def generar():
+    escribir_readme()
+    for tema in TEMAS_LISTA:
+        for i, datos in enumerate(CONTACTO + EXTRAS):
+            boton_contacto(*datos, tema, i)
+    for movil in (False, True):
+        for tema in TEMAS_LISTA:
+            contraportada(tema, movil)
     for movil in (False, True):
         for tema in TEMAS_LISTA:
             for numero, clave, titulo in CAPITULOS:

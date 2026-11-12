@@ -53,13 +53,14 @@ El README se lee como un cómic por capítulos. Cada sección abre con un rótul
 
 - **Proyectos:** cada proyecto es una tarjeta-portada completa (nombre, dibujo animado, titular, una frase, logos del stack, sello de estado y banda «ABRIR REPOSITORIO») enlazada a su repositorio. No hay texto suelto debajo; las pruebas viven en cada repositorio.
 - **Colaboración y método:** los aportes son tarjetas «crossover» enlazadas a su PR, y «Cómo trabajo» es un panel 2×2 donde cada glifo se enciende en rojo por turnos.
-- **Cierre:** solo la tarjeta «Continuará…», enlazada al correo.
+- **Cierre:** la tarjeta «Continuará…», enlazada al correo, y debajo dos botones de cómic: WhatsApp (`wa.me/573247571239`) y Gmail. Los botones activos llevan sombra roja o azul, flecha que empuja y un brillo ocasional.
+- **Contraportada:** franja «FIN DEL N.º 01» con código de barras decorativo y los botones Portafolio y Hoja de vida. Mientras no existan muestran «PRÓXIMAMENTE» con borde discontinuo; para activarlos basta poner su URL o ruta en `EXTRAS` (`assets/profile/secciones.py`) y regenerar. Los bloques del README entre `<!-- contacto:… -->` y `<!-- final:… -->` los escribe el generador.
 
 Regla técnica: GitHub convierte en enlace a sí misma toda imagen que no esté dentro de un enlace propio, y eso separa la imagen de su `<picture>` (se pierden las variantes de móvil y tema). Por eso cada `<picture>` va dentro de un `<a>` útil y en una sola línea, y las pestañas de los cajones son texto.
 
 ## Sección Tecnologías: cajones del multiverso
 
-GitHub no ejecuta JavaScript en un README y lo que hay dentro de un SVG no se puede pulsar. Por eso la sección usa lo único interactivo nativo, `<details>`: cuatro cajones plegables (Tierra-01 Backend, Tierra-02 Frontend, Tierra-03 Datos y Tierra-04 Herramientas e IA). La pestaña es texto con estilo de tecla (`<kbd>TIERRA-01</kbd> Backend`); al abrirla aparecen la cabecera ilustrada y las pegatinas. El primero empieza abierto.
+GitHub no ejecuta JavaScript en un README y lo que hay dentro de un SVG no se puede pulsar. Por eso la sección usa lo único interactivo nativo, `<details>`: cuatro cajones plegables (Tierra-01 Backend, Tierra-02 Frontend, Tierra-03 Datos y Tierra-04 Herramientas e IA). La pestaña es texto con estilo de tecla (`<kbd>TIERRA-01</kbd> Backend`); al abrirla aparecen la cabecera ilustrada y las pegatinas. Todos empiezan cerrados.
 
 Cada tecnología es una pegatina independiente dentro de un enlace. El número amarillo indica en cuántos proyectos públicos aparece. Al pulsarla se abre su ficha de expediente en `docs/stack/`, con una tabla de proyectos y un sello «VERIFICADO» que enlaza al archivo exacto donde se declara o se usa (`pom.xml`, `package.json`, `pyproject.toml`, `compose.yaml`…). Las tecnologías sin proyecto público (Supabase, y LangChain, Streamlit y TypeScript, que solo están en un repositorio privado) lo dicen en su ficha y no muestran contador.
 

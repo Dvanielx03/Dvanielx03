@@ -265,7 +265,8 @@ def bloque_readme():
     for orden, (cid, tierra, titulo, techs) in enumerate(CATEGORIAS):
         # La pestaña es texto: GitHub convierte en enlace toda imagen sin enlace propio, y una
         # imagen dentro de <summary> abriría el SVG en lugar de desplegar el cajón.
-        s += (f"<details{' open' if orden == 0 else ''}>\n"
+        # Todos los cajones empiezan cerrados.
+        s += ("<details>\n"
               f"<summary><kbd>{tierra}</kbd> <b>{titulo}</b> · {len(techs)} tecnologías</summary>\n<br>\n\n"
               f'<a href="#tecnologias"><picture>'
               f'<source media="(prefers-color-scheme: dark)" srcset="./assets/profile/stack/cajon-{cid}-noche.svg">'

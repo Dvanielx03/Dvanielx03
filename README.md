@@ -28,7 +28,7 @@ Español nativo · Inglés B2<br>
 <!-- tecnologias:inicio (generado por assets/profile/stack.py) -->
 Abre cada Tierra y toca una pegatina: verás los proyectos donde uso esa tecnología, con la prueba en el código. El número indica en cuántos proyectos públicos aparece.
 
-<details open>
+<details>
 <summary><kbd>TIERRA-01</kbd> <b>Backend</b> · 6 tecnologías</summary>
 <br>
 
@@ -82,9 +82,21 @@ Abre cada Tierra y toca una pegatina: verás los proyectos donde uso esa tecnolo
 
 <a href="#colaboracion"><picture><source media="(max-width: 600px) and (prefers-color-scheme: dark)" srcset="./assets/profile/method-noche-mobile.svg"><source media="(max-width: 600px)" srcset="./assets/profile/method-papel-mobile.svg"><source media="(prefers-color-scheme: dark)" srcset="./assets/profile/method-noche.svg"><img src="./assets/profile/method-papel.svg" width="100%" alt="Cómo trabajo: separo las reglas del negocio de frameworks y servicios; versiono la base de datos con migraciones; documento alcance, pruebas y lo que queda pendiente; trabajo con agentes de IA con reglas escritas y revisión."></picture></a>
 
+<a id="contacto"></a>
+
 <a href="mailto:danielsantiagomayorga03@gmail.com"><picture><source media="(max-width: 600px) and (prefers-color-scheme: dark)" srcset="./assets/profile/contact-noche-mobile.svg"><source media="(max-width: 600px)" srcset="./assets/profile/contact-papel-mobile.svg"><source media="(prefers-color-scheme: dark)" srcset="./assets/profile/contact-noche.svg"><img src="./assets/profile/contact-papel.svg" width="100%" alt="¿Construimos algo juntos? Escríbeme con tu idea, tu reto o una oportunidad."></picture></a>
+
+<!-- contacto:inicio (generado por assets/profile/secciones.py) -->
+<a href="https://wa.me/573247571239"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/profile/button-whatsapp-noche.svg"><img src="./assets/profile/button-whatsapp-papel.svg" width="310" alt="WhatsApp: +57 324 757 1239"></picture></a> <a href="mailto:danielsantiagomayorga03@gmail.com"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/profile/button-gmail-noche.svg"><img src="./assets/profile/button-gmail-papel.svg" width="310" alt="Gmail: danielsantiagomayorga03@gmail.com"></picture></a>
+<!-- contacto:fin -->
+
+<!-- final:inicio (generado por assets/profile/secciones.py) -->
+<a href="#proyectos"><picture><source media="(max-width: 600px) and (prefers-color-scheme: dark)" srcset="./assets/profile/back-cover-noche-mobile.svg"><source media="(max-width: 600px)" srcset="./assets/profile/back-cover-papel-mobile.svg"><source media="(prefers-color-scheme: dark)" srcset="./assets/profile/back-cover-noche.svg"><img src="./assets/profile/back-cover-papel.svg" width="100%" alt="Fin del número 01"></picture></a>
+
+<a href="#contacto"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/profile/button-portafolio-noche.svg"><img src="./assets/profile/button-portafolio-papel.svg" width="310" alt="Portafolio: próximamente"></picture></a> <a href="#contacto"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/profile/button-hoja-de-vida-noche.svg"><img src="./assets/profile/button-hoja-de-vida-papel.svg" width="310" alt="Hoja de vida: próximamente"></picture></a>
+<!-- final:fin -->
 
 <!-- Responsable: Daniel Santiago Mayorga. Revisión: 2026-11-11.
 Dirección visual «Fuera de registro», paleta Miles: docs/PROFILE-DESIGN.md. Generar los SVG: python assets/profile/generate.py
-Portafolio web y hoja de vida: añadir sus enlaces junto al contacto cuando estén publicados.
+Portafolio y hoja de vida: poner su URL o ruta en EXTRAS, dentro de assets/profile/secciones.py, y regenerar.
 -->
