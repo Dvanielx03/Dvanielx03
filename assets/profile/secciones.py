@@ -4,7 +4,8 @@ Se ejecuta desde generate.py (python assets/profile/generate.py). Cada pieza tie
 versión noche y papel, y versión móvil a 640 px. Una imagen solo admite un enlace:
 cada tarjeta lleva a un único destino (su repositorio o su PR).
 """
-from generate import TEMAS, MONO, SANS, TEXTO, t, desfase, trama, guardar, glifo, CSS_TRIPTICO
+from hashlib import sha256
+from generate import ROOT, TEMAS, MONO, SANS, TEXTO, t, desfase, trama, guardar, glifo, CSS_TRIPTICO
 from stack import logo, marcas
 
 TEMAS_LISTA = list(TEMAS)
@@ -264,11 +265,18 @@ def contraportada(tema, movil=False):
     guardar(f"back-cover-{tema}" + ("-mobile" if movil else ""), w, h, s, "Fin del número 01", "")
 
 
+def _ruta_svg(nombre):
+    """Renueva la referencia de caché solo cuando cambia el contenido del SVG."""
+    archivo = ROOT / f"{nombre}.svg"
+    version = sha256(archivo.read_bytes()).hexdigest()[:12]
+    return f"./assets/profile/{archivo.name}?v={version}"
+
+
 def _boton_md(clave, etiqueta, detalle, enlace):
     destino = enlace or "#contacto"
     alt = f"{etiqueta}: {detalle}" if enlace else f"{etiqueta}: próximamente"
     return (f'<a href="{destino}"><picture><source media="(prefers-color-scheme: dark)" '
-            f'srcset="./assets/profile/button-{clave}-noche.svg"><img src="./assets/profile/button-{clave}-papel.svg" '
+            f'srcset="{_ruta_svg(f"button-{clave}-noche")}"><img src="{_ruta_svg(f"button-{clave}-papel")}" '
             f'width="310" alt="{alt}"></picture></a>')
 
 
@@ -282,15 +290,14 @@ def _reemplazar(texto, marca, bloque):
 
 def escribir_readme():
     """Botones de contacto y contraportada, todo en una línea por bloque (ver docs/PROFILE-DESIGN.md)."""
-    from generate import ROOT
     readme = ROOT.parent.parent / "README.md"
     texto = readme.read_text(encoding="utf-8")
     contacto = " ".join(_boton_md(c, e, d, u) for c, e, d, _, u in CONTACTO)
     franja = ('<a href="#proyectos"><picture>'
-              '<source media="(max-width: 600px) and (prefers-color-scheme: dark)" srcset="./assets/profile/back-cover-noche-mobile.svg">'
-              '<source media="(max-width: 600px)" srcset="./assets/profile/back-cover-papel-mobile.svg">'
-              '<source media="(prefers-color-scheme: dark)" srcset="./assets/profile/back-cover-noche.svg">'
-              '<img src="./assets/profile/back-cover-papel.svg" width="100%" alt="Fin del número 01"></picture></a>')
+              f'<source media="(max-width: 600px) and (prefers-color-scheme: dark)" srcset="{_ruta_svg("back-cover-noche-mobile")}">'
+              f'<source media="(max-width: 600px)" srcset="{_ruta_svg("back-cover-papel-mobile")}">'
+              f'<source media="(prefers-color-scheme: dark)" srcset="{_ruta_svg("back-cover-noche")}">'
+              f'<img src="{_ruta_svg("back-cover-papel")}" width="100%" alt="Fin del número 01"></picture></a>')
     final = franja + "\n\n" + " ".join(_boton_md(c, e, d, u) for c, e, d, _, u in EXTRAS)
     texto = _reemplazar(texto, "contacto", contacto)
     texto = _reemplazar(texto, "final", final)
@@ -298,13 +305,13 @@ def escribir_readme():
 
 
 def generar():
-    escribir_readme()
     for tema in TEMAS_LISTA:
         for i, datos in enumerate(CONTACTO + EXTRAS):
             boton_contacto(*datos, tema, i)
     for movil in (False, True):
         for tema in TEMAS_LISTA:
             contraportada(tema, movil)
+    escribir_readme()
     for movil in (False, True):
         for tema in TEMAS_LISTA:
             for numero, clave, titulo in CAPITULOS:

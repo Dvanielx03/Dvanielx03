@@ -58,6 +58,8 @@ El README se lee como un cómic por capítulos. Cada sección abre con un rótul
 
 Regla técnica: GitHub convierte en enlace a sí misma toda imagen que no esté dentro de un enlace propio, y eso separa la imagen de su `<picture>` (se pierden las variantes de móvil y tema). Por eso cada `<picture>` va dentro de un `<a>` útil y en una sola línea, y las pestañas de los cajones son texto.
 
+Los botones y la contraportada llevan una versión calculada a partir del contenido del SVG en su URL. Así, cuando cambian, GitHub solicita la nueva imagen y evita conservar el estado «PRÓXIMAMENTE» en caché.
+
 ## Sección Tecnologías: cajones del multiverso
 
 GitHub no ejecuta JavaScript en un README y lo que hay dentro de un SVG no se puede pulsar. Por eso la sección usa lo único interactivo nativo, `<details>`: cuatro cajones plegables (Tierra-01 Backend, Tierra-02 Frontend, Tierra-03 Datos y Tierra-04 Herramientas e IA). La pestaña es texto con estilo de tecla (`<kbd>TIERRA-01</kbd> Backend`); al abrirla aparecen la cabecera ilustrada y las pegatinas. Todos empiezan cerrados.
