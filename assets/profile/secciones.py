@@ -268,8 +268,9 @@ def contraportada(tema, movil=False):
 def _ruta_svg(nombre):
     """Renueva la referencia de caché solo cuando cambia el contenido del SVG."""
     archivo = ROOT / f"{nombre}.svg"
-    version = sha256(archivo.read_bytes()).hexdigest()[:12]
-    return f"./assets/profile/{archivo.name}?v={version}"
+    version = sha256(archivo.read_text(encoding="utf-8").encode("utf-8")).hexdigest()[:12]
+    # El enlace /raw de github.com descarta la consulta al redirigir.
+    return f"https://raw.githubusercontent.com/Dvanielx03/Dvanielx03/main/assets/profile/{archivo.name}?v={version}"
 
 
 def _boton_md(clave, etiqueta, detalle, enlace):
