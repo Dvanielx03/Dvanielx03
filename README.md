@@ -95,10 +95,10 @@ Abre cada Tierra y toca una pegatina: verás los proyectos donde uso esa tecnolo
 <!-- final:inicio (generado por assets/profile/secciones.py) -->
 <a href="#proyectos"><picture><source media="(max-width: 600px) and (prefers-color-scheme: dark)" srcset="./assets/profile/back-cover-noche-mobile.svg"><source media="(max-width: 600px)" srcset="./assets/profile/back-cover-papel-mobile.svg"><source media="(prefers-color-scheme: dark)" srcset="./assets/profile/back-cover-noche.svg"><img src="./assets/profile/back-cover-papel.svg" width="100%" alt="Fin del número 01"></picture></a>
 
-<a href="#contacto"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/profile/button-portafolio-noche.svg"><img src="./assets/profile/button-portafolio-papel.svg" width="310" alt="Portafolio: próximamente"></picture></a> <a href="#contacto"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/profile/button-hoja-de-vida-noche.svg"><img src="./assets/profile/button-hoja-de-vida-papel.svg" width="310" alt="Hoja de vida: próximamente"></picture></a>
+<a href="https://dvanielx03.github.io/DanielVerse/#E0-P1"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/profile/button-portafolio-noche.svg"><img src="./assets/profile/button-portafolio-papel.svg" width="310" alt="Portafolio: Sitio web con mis proyectos"></picture></a> <a href="https://github.com/Dvanielx03/Dvanielx03/raw/refs/heads/main/docs/CV-Daniel-Santiago-Mayorga.pdf"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/profile/button-hoja-de-vida-noche.svg"><img src="./assets/profile/button-hoja-de-vida-papel.svg" width="310" alt="Hoja de vida: Descarga en PDF"></picture></a>
 <!-- final:fin -->
 
-<!-- Responsable: Daniel Santiago Mayorga. Revisión: 2026-11-11.
+<!-- Responsable: Daniel Santiago Mayorga. Revisión: 2026-11-13.
 Dirección visual «Fuera de registro», paleta Miles: docs/PROFILE-DESIGN.md. Generar los SVG: python assets/profile/generate.py
-Portafolio y hoja de vida: poner su URL o ruta en EXTRAS, dentro de assets/profile/secciones.py, y regenerar.
+Portafolio y hoja de vida: destinos configurados en EXTRAS, dentro de assets/profile/secciones.py. Actualizar allí y regenerar.
 -->

@@ -204,10 +204,10 @@ CONTACTO = [
     ("whatsapp", "WhatsApp", "+57 324 757 1239", "whatsapp", "https://wa.me/573247571239"),
     ("gmail", "Gmail", "danielsantiagomayorga03@gmail.com", "gmail", "mailto:danielsantiagomayorga03@gmail.com"),
 ]
-# Cuando existan, pon aquí la URL del portafolio y la ruta del PDF (por ejemplo ./docs/cv.pdf).
+# Destinos públicos de la contraportada. El PDF usa el enlace de descarga directa.
 EXTRAS = [
-    ("portafolio", "Portafolio", "Sitio web con mis proyectos", None, None),
-    ("hoja-de-vida", "Hoja de vida", "Descarga en PDF", None, None),
+    ("portafolio", "Portafolio", "Sitio web con mis proyectos", None, "https://dvanielx03.github.io/DanielVerse/#E0-P1"),
+    ("hoja-de-vida", "Hoja de vida", "Descarga en PDF", None, "https://github.com/Dvanielx03/Dvanielx03/raw/refs/heads/main/docs/CV-Daniel-Santiago-Mayorga.pdf"),
 ]
 
 CSS_BOTON = (
@@ -254,7 +254,7 @@ def contraportada(tema, movil=False):
           f'stroke="{k["contorno"]}" stroke-width="2"/>'
           + t(34, h / 2 + 7, "FIN DEL N.º 01", 20 if movil else 17, k["sobre_amarillo"], 700, MONO, 'letter-spacing="1"'))
     if not movil:
-        s += t(216, h / 2 + 6, "Gracias por leer. El próximo número, con portafolio y hoja de vida.", 15, k["suave"], 400, TEXTO)
+        s += t(216, h / 2 + 6, "Gracias por leer. Mi portafolio y hoja de vida están a un clic.", 15, k["suave"], 400, TEXTO)
     barras, x = "", w - 34
     for n, ancho in enumerate([2, 1, 3, 1, 1, 2, 4, 1, 2, 1, 3, 2, 1, 1, 3, 1, 2, 2, 1, 3]):
         x -= ancho * 2 + 2
