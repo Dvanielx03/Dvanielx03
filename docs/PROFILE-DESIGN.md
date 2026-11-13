@@ -58,7 +58,7 @@ El README se lee como un cómic por capítulos. Cada sección abre con un rótul
 
 Regla técnica: GitHub convierte en enlace a sí misma toda imagen que no esté dentro de un enlace propio, y eso separa la imagen de su `<picture>` (se pierden las variantes de móvil y tema). Por eso cada `<picture>` va dentro de un `<a>` útil y en una sola línea, y las pestañas de los cajones son texto.
 
-Los botones y la contraportada llevan una versión calculada a partir del contenido del SVG en su URL. Así, cuando cambian, GitHub solicita la nueva imagen y evita conservar el estado «PRÓXIMAMENTE» en caché.
+Los botones y la contraportada se publican también con una versión calculada a partir del contenido del SVG en el nombre del archivo. Así, cuando cambian, GitHub solicita una ruta nueva y evita conservar el estado «PRÓXIMAMENTE» en caché. Las copias con versión también deben incluirse en el commit; sus SVG originales siguen siendo la salida del generador.
 
 ## Sección Tecnologías: cajones del multiverso
 
